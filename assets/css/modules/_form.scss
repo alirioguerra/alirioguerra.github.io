@@ -1,0 +1,66 @@
+.form {
+	padding: 20px 0;
+	max-width: 650px;
+	input, textarea {
+		-webkit-appearance: none;
+		outline: none;
+		width: 100%;
+		padding: 5px 0 5px 10px;
+		height: 35px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin-bottom: 10px;
+		border: none;
+		transition: all .35s ease;
+		background: $white;
+		color: $black;
+		@include radius(.5rem);
+		@include type-2(24);
+		&:hover, &:active, &:focus {
+			outline: none;
+ 			background: transparentize($white, .1);
+ 		}
+	}
+	textarea {
+		height: 150px;
+		margin-bottom: 20px;
+	}
+	label {
+		color: $white;
+	}
+}
+
+#enviar {
+	display: block;
+	border: 0px solid;
+	border-left: 5px solid $color-s;
+	background: $white;
+	padding: .3rem 0 0 0;
+	width: 15rem;
+	height: 2.3rem;
+	color: $black;
+	transition: all .35s ease;
+	@include radius(.5rem);
+	@include type-1(18);
+	&:hover, &:focus {
+		background: $white;
+		border-left: 20px solid $color-s;
+	}
+	@include bp(tab, max) {
+		width: 100%;
+	}
+}
+
+#form__notification {
+	@include type-1(18);
+	color: green;
+}
+
+#form__notification--error {
+	@include type-1(18);
+	color: red;
+}
+.nao-aparece {
+	display: none;
+}

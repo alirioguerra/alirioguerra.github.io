@@ -1,0 +1,71 @@
+#home {
+	min-height: 100vh;
+
+	.home-content {
+		p {
+			@include type-2(24);
+			text-transform: lowercase;
+
+			@include bp(cel, max) {
+				font-size: 1.2em;
+			}
+		}
+	}
+}
+
+// work
+.work {
+	display: flex;
+	justify-content: flex-start;
+	padding: 30px 0;
+	position: relative;
+
+	&-single {
+		flex: 0 0 32%;
+		margin: 0 10px;
+		@include shadow(1);
+		@include radius(5px);
+		transition: all .35s ease;
+		overflow: hidden;
+
+		&-content {
+			padding: 15px;
+		}
+
+		&-links {
+			padding: 0 15px 15px 15px;
+
+			a {
+				margin: 0 15px 0 0;
+			}
+		}
+
+		&:hover {
+			@include shadow(3);
+		}
+
+		@include bp(cel, max) {
+			flex: 1 0 90%;
+		}
+	}
+
+	@include bp(cel, max) {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+
+		&::after {
+			content: '→';
+			position: absolute;
+			top: 10px;
+			right: 30px;
+			color: $color-s;
+		}
+	}
+}
+
+.contact-ways a svg {
+	margin: 15px 0 0 0;
+	width: 36px;
+}

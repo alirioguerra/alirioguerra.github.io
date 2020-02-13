@@ -1,0 +1,18 @@
+{
+  "name": "alirioguerra",
+  "version": "1.0.0",
+  "description": "portfólio de desenvolvimento",
+  "main": "index.js",
+  "author": "Alírio Guerra",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify-es": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^5.0.1"
+  }
+}
