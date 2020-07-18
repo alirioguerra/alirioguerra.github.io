@@ -23,10 +23,10 @@
 	&-single {
 		flex: 0 0 32%;
 		margin: 0 10px;
-		@include shadow(1);
-		@include radius(5px);
+    border: 1px solid linen;
 		transition: all .35s ease;
 		overflow: hidden;
+		@include radius(5px);
 
 		&-content {
 			padding: 15px;
