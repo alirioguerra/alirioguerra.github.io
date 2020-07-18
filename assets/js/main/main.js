@@ -40,6 +40,12 @@ $(document).ready( () => {
 	});
 });
 
+$(document).ready(() => {
+	fetch('https://api.github.com/users/alirioguerra/repos').then(response => response.json())
+	.then(data => {
+		console.log(data)
+	})
+})
 
 
 
