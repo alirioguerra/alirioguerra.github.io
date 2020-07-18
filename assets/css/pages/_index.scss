@@ -1,71 +1,81 @@
 #home {
-	min-height: 100vh;
+  min-height: 100vh;
 
-	.home-content {
-		p {
-			@include type-2(24);
-			text-transform: lowercase;
+  .home-content {
+    p {
+      @include type-2(24);
+      text-transform: lowercase;
 
-			@include bp(cel, max) {
-				font-size: 1.2em;
-			}
-		}
-	}
+      @include bp(cel, max) {
+        font-size: 1.2em;
+      }
+    }
+  }
 }
 
 // work
 .work {
-	display: flex;
-	justify-content: flex-start;
-	padding: 30px 0;
-	position: relative;
-
-	&-single {
-		flex: 0 0 32%;
-		margin: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+  position: relative;
+  flex-wrap: wrap;
+  &-single {
+    flex: 0 0 23%;
+    margin: 10px;
     border: 1px solid linen;
-		transition: all .35s ease;
-		overflow: hidden;
-		@include radius(5px);
+    transition: all 0.35s ease;
+    overflow: hidden;
+    @include radius(5px);
+    &-content {
+      padding: 15px;
+    }
+    &-links {
+      padding: 0 15px 15px 15px;
+      a {
+        margin: 0 15px 0 0;
+      }
+    }
 
-		&-content {
-			padding: 15px;
-		}
+    &:hover {
+      @include shadow(3);
+    }
 
-		&-links {
-			padding: 0 15px 15px 15px;
+    @include bp(cel, max) {
+      flex: 1 0 90%;
+    }
+  }
 
-			a {
-				margin: 0 15px 0 0;
-			}
-		}
+  @include bp(cel, max) {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
 
-		&:hover {
-			@include shadow(3);
-		}
+    &::after {
+      content: "→";
+      position: absolute;
+      top: 10px;
+      right: 30px;
+      color: $color-1;
+    }
+  }
+  &::-webkit-scrollbar {
+    height: 2px;
+  }
 
-		@include bp(cel, max) {
-			flex: 1 0 90%;
-		}
-	}
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background-color: $color-1;
+  }
 
-	@include bp(cel, max) {
-		flex-wrap: nowrap;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-		-ms-overflow-style: -ms-autohiding-scrollbar;
-
-		&::after {
-			content: '→';
-			position: absolute;
-			top: 10px;
-			right: 30px;
-			color: $color-s;
-		}
-	}
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: $contrast;
+  }
 }
 
 .contact-ways a svg {
-	margin: 15px 0 0 0;
-	width: 36px;
+  margin: 15px 0 0 0;
+  width: 36px;
 }
