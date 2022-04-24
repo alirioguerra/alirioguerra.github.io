@@ -1,0 +1,85 @@
+#resume-intro {
+  background: $gradient-p;
+
+  h1 {
+    text-transform: capitalize;
+    color: $white;
+
+    &:after {
+      background: $white;
+    }
+  }
+
+  p {
+    color: $white;
+  }
+}
+
+.skills {
+  max-width: 700px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+
+  @include bp(cel, max) {
+    flex-direction: column;
+
+    ul {
+      margin-bottom: 15px;
+    }
+  }
+
+  &-list > li,
+  &-list-personal > li {
+    position: relative;
+    @include type-2(18);
+
+    &:before {
+      background: $color-1;
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: -15px;
+      top: 8px;
+      @include radius(50%);
+    }
+  }
+}
+
+.history-item {
+  margin-bottom: 60px;
+
+  h2 {
+    @include type-1(24);
+    color: $color-1;
+  }
+
+  h3 {
+    @include type-1(18);
+  }
+
+  p {
+    margin: 15px 0;
+  }
+}
+
+.education-list {
+  padding: 0 15px;
+
+  > li {
+    position: relative;
+    @include type-2(18);
+
+    &:before {
+      background: $color-1;
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: -15px;
+      top: 8px;
+      @include radius(50%);
+    }
+  }
+}

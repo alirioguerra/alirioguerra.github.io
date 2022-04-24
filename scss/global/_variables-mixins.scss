@@ -3,8 +3,7 @@ $color-p: #4facfe;
 $color-s: #00f2fe;
 $color-1: #5dfdba;
 $color-2: #ff648b;
-$color-3: #fbaf0d;
-$black: #21222d;
+$black: #191622;
 $white: #eff0ea;
 $gray: #dae0e5;
 $contrast: #c3cfd9;
@@ -12,11 +11,11 @@ $gradient-p: linear-gradient(to right, #21222d 0%, #21222d 100%);
 
 // Mixins
 @mixin typePrimary {
-  font-family: 'Lalezar', cursive;
+  font-family: "Lalezar", cursive;
 }
 @mixin typeSecondary {
   font-weight: 300;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 @mixin type-1($size) {
   @include typePrimary;
@@ -104,8 +103,8 @@ $gradient-p: linear-gradient(to right, #21222d 0%, #21222d 100%);
 }
 // breakpoints
 $breakpoints: (
-  'cel': 475px,
-  'tab': 770px,
+  "cel": 475px,
+  "tab": 770px,
 );
 @mixin bp($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
