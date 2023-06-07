@@ -2,7 +2,6 @@
   background: $gradient-p;
 
   h1 {
-    text-transform: capitalize;
     color: $white;
 
     &:after {
@@ -48,7 +47,15 @@
 }
 
 .history-item {
-  margin-bottom: 60px;
+  margin: 60px 0;
+
+  .tech {
+    color: $color-1;
+    display: block;
+    margin-top: 15px;
+    letter-spacing: 1.2px;
+    @include type-1(12);
+  }
 
   h2 {
     @include type-1(24);
@@ -57,6 +64,7 @@
 
   h3 {
     @include type-1(18);
+    color: $white;
   }
 
   p {
