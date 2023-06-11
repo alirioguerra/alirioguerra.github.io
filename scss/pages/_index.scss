@@ -19,10 +19,11 @@
   padding: 30px 0;
   position: relative;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px;
 
   &-single {
     flex: 0 0 23%;
-    margin: 10px;
     border: 1px solid $contrast;
     transition: all 0.35s ease;
     overflow: hidden;
