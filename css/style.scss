@@ -1,10 +1,10 @@
 // Global & Grid
-@import "global/variables-mixins";
 @import "global/reset";
+@import "global/variables-mixins";
 @import "grid/grid";
 @import "global/global";
 @import "global/footer";
 
 // PAGES
 @import "pages/index";
-@import "pages/resume"; ;
+@import "pages/resume";

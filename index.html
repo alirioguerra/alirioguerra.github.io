@@ -45,11 +45,12 @@
       href="https://fonts.googleapis.com/css?family=Lalezar|Montserrat:300&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.min.css" />
   </head>
   <body>
     <section id="home" class="hero">
       <div class="hero-body">
+        <!-- add SVG path animation -->
         <div class="container content">
           <h1 data-name="Alírio Guerra">Alírio Guerra.</h1>
           <p>Desenvolvedor front-end JavaScript</p>
@@ -67,8 +68,7 @@
             populares como Vue.js, React.js e Angular. Trabalhei em projetos
             desafiadores para empresas renomadas, garantindo alta qualidade,
             desempenho e usabilidade. Estou sempre atualizado com as últimas
-            tendências do desenvolvimento front-end. Para mais informações,
-            consulte meu currículo.
+            tendências do desenvolvimento front-end.
           </p>
           <div class="btns">
             <a href="resume.html" class="btn btn-primary"> ver currículo </a>
@@ -82,7 +82,8 @@
           <h2 data-name="Portfólio.">Portfólio.</h2>
           <p>Meus projetos recentes</p>
           <div class="work">
-            <div class="work-single anime">
+            <!-- change layout to single line & add animations -->
+            <div class="work-single">
               <div class="work-single-image">
                 <figure class="image">
                   <img src="./assets/img/pacifica.png" alt="Site Pacifica" />
@@ -104,7 +105,7 @@
               </div>
             </div>
 
-            <div class="work-single anime">
+            <div class="work-single">
               <div class="work-single-image">
                 <figure class="image">
                   <img src="./assets/img/spark.jpeg" alt="Site Spark" />
@@ -124,7 +125,7 @@
               </div>
             </div>
 
-            <div class="work-single anime">
+            <div class="work-single">
               <div class="work-single-image">
                 <figure class="image">
                   <img src="./assets/img/brpostal.png" alt="Site BR postal" />
@@ -146,7 +147,7 @@
               </div>
             </div>
 
-            <div class="work-single anime">
+            <div class="work-single">
               <div class="work-single-image">
                 <figure class="image">
                   <img src="./assets/img/vuala.png" alt="Site Vualá" />
@@ -181,5 +182,7 @@
         </div>
       </div>
     </section>
+
+    <script src="index.min.js"></script>
   </body>
 </html>

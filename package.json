@@ -2,13 +2,20 @@
   "name": "alirioguerra",
   "version": "1.0.0",
   "description": "portfólio de desenvolvimento",
-  "main": "index.js",
   "author": "Alírio Guerra",
   "license": "MIT",
+  "scripts": {
+    "start": "npm install && gulp"
+  },
   "devDependencies": {
+    "browser-sync": "^2.29.3",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-sass": "^5.0.0",
-    "sass": "^1.49.9"
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifycss": "^1.1.0",
+    "sass": "^1.63.3"
   }
 }
