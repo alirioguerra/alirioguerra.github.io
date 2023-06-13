@@ -15,17 +15,13 @@
 
 // work
 .work {
-  display: flex;
   padding: 30px 0;
   position: relative;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
+  display: grid;
+  gap: 30px;
 
   &-single {
-    flex: 0 0 23%;
     border: 1px solid $contrast;
-    transition: all 0.35s ease;
     overflow: hidden;
     @include radius(5px);
 
@@ -39,37 +35,6 @@
         margin: 0 15px 0 0;
       }
     }
-
-    &:hover {
-      @include shadow(3);
-    }
-
-    @include bp(cel, max) {
-      flex: 1 0 90%;
-    }
-  }
-
-  @include bp(cel, max) {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-
-    &::after {
-      content: "→";
-      position: absolute;
-      top: 10px;
-      right: 30px;
-      color: $color-1;
-    }
-  }
-  &::-webkit-scrollbar {
-    height: 5px;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background-color: $contrast;
   }
 }
 

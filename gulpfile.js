@@ -11,22 +11,11 @@ const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 
-// Compile Sass
+// Compile & Minify CSS
 gulp.task("sass", function () {
   return gulp
     .src("css/**/*.scss")
     .pipe(sass().on("error", sass.logError))
-    .pipe(gulp.dest("css"))
-    .pipe(browserSync.stream());
-});
-
-// Concat & Minify CSS
-gulp.task("css", function () {
-  return gulp
-    .src("css/**/*.css")
-    .pipe(concat("style.css"))
-    .pipe(uglifycss())
-    .pipe(rename("style.min.css"))
     .pipe(gulp.dest("./"))
     .pipe(browserSync.stream());
 });
@@ -49,11 +38,10 @@ gulp.task("watch", function () {
       baseDir: "./",
     },
   });
-  gulp.watch("scss/**/*.scss", gulp.series("sass"));
-  gulp.watch("css/**/*.css", gulp.series("css"));
+  gulp.watch("css/**/*.scss", gulp.series("sass"));
   gulp.watch("js/**/*.js", gulp.series("js"));
   gulp.watch("./*.html").on("change", browserSync.reload);
 });
 
 // Default Task
-gulp.task("default", gulp.series("sass", "css", "js", "watch"));
+gulp.task("default", gulp.series("sass", "js", "watch"));
