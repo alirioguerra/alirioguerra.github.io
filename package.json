@@ -1,14 +1,17 @@
 {
   "name": "alirioguerra",
   "version": "1.0.0",
+  "homepage": "https://alirioguerra.github.io/",
   "description": "portfólio de desenvolvimento",
   "author": "Alírio Guerra",
   "license": "MIT",
   "scripts": {
+    "predeploy": "npm i",
     "start": "npm install && gulp"
   },
   "devDependencies": {
     "browser-sync": "^2.29.3",
+    "gh-pages": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^8.0.0",
@@ -17,5 +20,8 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "^1.1.0",
     "sass": "^1.63.3"
+  },
+  "dependencies": {
+    "gsap": "npm:@gsap/member@^3.12.1"
   }
 }
