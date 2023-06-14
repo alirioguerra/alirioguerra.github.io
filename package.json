@@ -6,7 +6,6 @@
   "author": "Alírio Guerra",
   "license": "MIT",
   "scripts": {
-    "predeploy": "npm i",
     "start": "npm install && gulp"
   },
   "devDependencies": {
