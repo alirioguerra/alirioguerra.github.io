@@ -4,7 +4,7 @@
   .home-content {
     p {
       @include type-2(24);
-      text-transform: lowercase;
+      // text-transform: lowercase;
 
       @include bp(cel, max) {
         font-size: 1.2em;
@@ -21,18 +21,46 @@
   gap: 30px;
 
   &-single {
-    border: 1px solid $contrast;
     overflow: hidden;
-    @include radius(5px);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    align-items: center;
+    gap: 30px;
+    cursor: pointer;
 
-    &-content {
-      padding: 15px;
+    @include bp(cel, max) {
+      grid-template-columns: 1fr;
     }
 
-    &-links {
-      padding: 0 15px 15px 15px;
-      a {
-        margin: 0 15px 0 0;
+    &:hover {
+      .work-single-image img {
+        transform: scale(1.1);
+      }
+    }
+
+    &-image {
+      max-width: 840px;
+      width: 100%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    &-content {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+
+      h3 {
+        @include type-1(48);
+        text-transform: uppercase;
       }
     }
   }

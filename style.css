@@ -639,7 +639,6 @@ h2 {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5em;
   line-height: 1.25em;
-  text-transform: lowercase;
 }
 @media only screen and (max-width: 474px) {
   #home .home-content p {
@@ -654,20 +653,44 @@ h2 {
   gap: 30px;
 }
 .work-single {
-  border: 1px solid #c3cfd9;
   overflow: hidden;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  align-items: center;
+  gap: 30px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 474px) {
+  .work-single {
+    grid-template-columns: 1fr;
+  }
+}
+.work-single:hover .work-single-image img {
+  transform: scale(1.1);
+}
+.work-single-image {
+  max-width: 840px;
+  width: 100%;
+  overflow: hidden;
+}
+.work-single-image img {
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease-in-out;
 }
 .work-single-content {
-  padding: 15px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
 }
-.work-single-links {
-  padding: 0 15px 15px 15px;
-}
-.work-single-links a {
-  margin: 0 15px 0 0;
+.work-single-content h3 {
+  font-family: "Lalezar", cursive;
+  font-size: 3em;
+  line-height: 1em;
+  text-transform: uppercase;
 }
 
 .contact-ways a svg {
