@@ -658,6 +658,11 @@ h2 {
   gap: 30px;
   cursor: pointer;
 }
+.work-single.show .work-single-image,
+.work-single.show .work-single-content {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
 @media only screen and (max-width: 474px) {
   .work-single {
     grid-template-columns: 1fr;
@@ -674,6 +679,9 @@ h2 {
   width: 100%;
   overflow: hidden;
   border-radius: 10px;
+  opacity: 0;
+  transform: translate3d(0, 100px, 0);
+  transition: opacity 0.5s ease-in-out, transform 0.9s ease-in-out;
 }
 .work-single-image img {
   width: 100%;
@@ -685,8 +693,11 @@ h2 {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 30px;
+  gap: 5px;
   width: 100%;
+  opacity: 0;
+  transform: translate3d(0, 100px, 0);
+  transition: opacity 0.8s ease-in-out, transform 1.2s ease-in-out;
 }
 .work-single-content h3 {
   font-family: "Lalezar", cursive;
@@ -700,15 +711,11 @@ h2 {
   gap: 10px;
 }
 .work-single-content .techs .tech {
-  font-weight: 300;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lalezar", cursive;
   font-size: 1.125em;
   line-height: 1.3888889em;
   text-transform: lowercase;
-  background-color: #00f2fe;
-  color: #191622;
-  border-radius: 50px;
-  padding: 5px 15px;
+  color: #5dfdba;
 }
 
 .contact-ways a svg {
