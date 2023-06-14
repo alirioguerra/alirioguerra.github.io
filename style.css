@@ -518,7 +518,6 @@ h3,
 h4,
 h5,
 h6 {
-  text-transform: lowercase;
   letter-spacing: 2px;
 }
 
@@ -653,7 +652,6 @@ h2 {
   gap: 30px;
 }
 .work-single {
-  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 300px;
   align-items: center;
@@ -665,13 +663,17 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
-.work-single:hover .work-single-image img {
+.work-single:hover, .work-single:focus {
+  outline: none;
+}
+.work-single:hover .work-single-image img, .work-single:focus .work-single-image img {
   transform: scale(1.1);
 }
 .work-single-image {
   max-width: 840px;
   width: 100%;
   overflow: hidden;
+  border-radius: 10px;
 }
 .work-single-image img {
   width: 100%;
@@ -691,6 +693,22 @@ h2 {
   font-size: 3em;
   line-height: 1em;
   text-transform: uppercase;
+}
+.work-single-content .techs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.work-single-content .techs .tech {
+  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.125em;
+  line-height: 1.3888889em;
+  text-transform: lowercase;
+  background-color: #00f2fe;
+  color: #191622;
+  border-radius: 50px;
+  padding: 5px 15px;
 }
 
 .contact-ways a svg {

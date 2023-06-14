@@ -4,7 +4,6 @@
   .home-content {
     p {
       @include type-2(24);
-      // text-transform: lowercase;
 
       @include bp(cel, max) {
         font-size: 1.2em;
@@ -21,7 +20,6 @@
   gap: 30px;
 
   &-single {
-    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 300px;
     align-items: center;
@@ -32,7 +30,10 @@
       grid-template-columns: 1fr;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
+      outline: none;
+
       .work-single-image img {
         transform: scale(1.1);
       }
@@ -42,6 +43,7 @@
       max-width: 840px;
       width: 100%;
       overflow: hidden;
+      border-radius: 10px;
 
       img {
         width: 100%;
@@ -61,6 +63,21 @@
       h3 {
         @include type-1(48);
         text-transform: uppercase;
+      }
+
+      .techs {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .tech {
+          @include type-2(18);
+          text-transform: lowercase;
+          background-color: $color-s;
+          color: $black;
+          border-radius: 50px;
+          padding: 5px 15px;
+        }
       }
     }
   }
