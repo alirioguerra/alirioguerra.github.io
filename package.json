@@ -19,8 +19,5 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "^1.1.0",
     "sass": "^1.63.3"
-  },
-  "dependencies": {
-    "gsap": "npm:@gsap/member@^3.12.1"
   }
 }
