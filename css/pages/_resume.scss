@@ -28,20 +28,27 @@
     }
   }
 
-  &-list > li,
-  &-list-personal > li {
-    position: relative;
-    @include type-2(18);
+  &-list,
+  &-list-personal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
 
-    &:before {
-      background: $color-1;
-      content: "";
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      left: -15px;
-      top: 8px;
-      @include radius(50%);
+    > li {
+      position: relative;
+      @include type-2(18);
+
+      &:before {
+        background: $color-1;
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        left: -15px;
+        top: 8px;
+        @include radius(50%);
+      }
     }
   }
 }
@@ -65,6 +72,8 @@
   h3 {
     @include type-1(36);
     color: $white;
+    line-height: 1;
+    margin-bottom: 15px;
   }
 
   h4 {
@@ -93,6 +102,21 @@
       left: -15px;
       top: 8px;
       @include radius(50%);
+    }
+  }
+}
+
+.anime {
+  :nth-child(n) {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.5s ease-in-out 0.2s;
+  }
+
+  &.show {
+    :nth-child(n) {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

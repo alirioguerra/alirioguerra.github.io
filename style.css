@@ -750,6 +750,12 @@ h2 {
     margin-bottom: 15px;
   }
 }
+.skills-list, .skills-list-personal {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+}
 .skills-list > li, .skills-list-personal > li {
   position: relative;
   font-weight: 300;
@@ -791,6 +797,8 @@ h2 {
   font-size: 2.25em;
   line-height: 1.6666667em;
   color: #eff0ea;
+  line-height: 1;
+  margin-bottom: 15px;
 }
 .history-item h4 {
   font-family: "Lalezar", cursive;
@@ -823,4 +831,14 @@ h2 {
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
+}
+
+.anime :nth-child(n) {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.5s ease-in-out 0.2s;
+}
+.anime.show :nth-child(n) {
+  opacity: 1;
+  transform: translateY(0);
 }
