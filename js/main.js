@@ -20,7 +20,7 @@ if (title) {
     loop: true,
     delay: 70,
     autoStart: true,
-    pauseFor: 8000,
+    pauseFor: 15000,
   });
 }
 // class 'anime' for each nth-child anime in sequence
