@@ -1,12 +1,14 @@
 // Global
 html {
   scroll-behavior: smooth;
+  font-display: swap;
 }
 
 body {
   background: $black;
   color: $white;
   @include type-2(14);
+  font-display: swap;
 }
 
 a {

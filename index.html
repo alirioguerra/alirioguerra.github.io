@@ -5,20 +5,6 @@
   <!--<![endif]-->
 
   <head>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-109842782-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-109842782-2");
-    </script>
-
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Alírio Guerra - Desenvolvedor front-end JavaScript</title>
@@ -36,12 +22,16 @@
       content="Alírio Guerra - Desenvolverdor front-end JavaScript."
     />
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css?family=Lalezar|Montserrat:300&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <link rel="stylesheet" href="style.css" />
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
   </head>
@@ -100,12 +90,13 @@
               class="work-single"
             >
               <div class="work-single-image">
-                <figure class="image">
-                  <img
-                    src="./assets/img/multi.jpeg"
-                    alt="Site Baiano Multi Lives"
-                  />
-                </figure>
+                <img
+                  class="image"
+                  width="1920"
+                  height="954"
+                  src="./assets/img/multi.webp"
+                  alt="Site Baiano Multi Lives"
+                />
               </div>
               <div class="work-single-content">
                 <h3>Baiano Multi Lives</h3>
@@ -122,12 +113,13 @@
               class="work-single"
             >
               <div class="work-single-image">
-                <figure class="image">
-                  <img
-                    src="./assets/img/cartinhas.jpeg"
-                    alt="Site Baiano Cartinhas"
-                  />
-                </figure>
+                <img
+                  class="image"
+                  width="1920"
+                  height="954"
+                  src="./assets/img/cartinhas.webp"
+                  alt="Site Baiano Cartinhas"
+                />
               </div>
               <div class="work-single-content">
                 <h3>Baiano Cartinhas</h3>
@@ -143,9 +135,13 @@
               class="work-single"
             >
               <div class="work-single-image">
-                <figure class="image">
-                  <img src="./assets/img/pacifica.png" alt="Site Pacifica" />
-                </figure>
+                <img
+                  class="image"
+                  width="1920"
+                  height="954"
+                  src="./assets/img/pacifica.webp"
+                  alt="Site Pacifica"
+                />
               </div>
               <div class="work-single-content">
                 <h3>Pacífica</h3>
@@ -159,9 +155,13 @@
 
             <a href="https://spark.com.br/" target="_blank" class="work-single">
               <div class="work-single-image">
-                <figure class="image">
-                  <img src="./assets/img/spark.jpeg" alt="Site Spark" />
-                </figure>
+                <img
+                  class="image"
+                  width="1920"
+                  height="954"
+                  src="./assets/img/spark.webp"
+                  alt="Site Spark"
+                />
               </div>
               <div class="work-single-content">
                 <h3>Spark</h3>
@@ -179,9 +179,13 @@
               class="work-single"
             >
               <div class="work-single-image">
-                <figure class="image">
-                  <img src="./assets/img/brpostal.png" alt="Site BR postal" />
-                </figure>
+                <img
+                  class="image"
+                  width="1920"
+                  height="954"
+                  src="./assets/img/brpostal.webp"
+                  alt="Site BR postal"
+                />
               </div>
               <div class="work-single-content">
                 <h3>BR Postal</h3>
@@ -198,9 +202,13 @@
               class="work-single"
             >
               <div class="work-single-image">
-                <figure class="image">
-                  <img src="./assets/img/vuala.png" alt="Site Vualá" />
-                </figure>
+                <img
+                  class="image"
+                  width="1920"
+                  height="954"
+                  src="./assets/img/vuala.webp"
+                  alt="Site Vualá"
+                />
               </div>
               <div class="work-single-content">
                 <h3>Vualá</h3>

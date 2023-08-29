@@ -487,6 +487,7 @@ ul {
 
 html {
   scroll-behavior: smooth;
+  font-display: swap;
 }
 
 body {
@@ -496,6 +497,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 0.875em;
   line-height: 1.4285714286em;
+  font-display: swap;
 }
 
 a {
