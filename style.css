@@ -768,6 +768,10 @@ h2 {
 #resume-intro p {
   color: #eff0ea;
 }
+#resume-intro .links {
+  display: flex;
+  gap: 10px;
+}
 
 .skills {
   max-width: 700px;
