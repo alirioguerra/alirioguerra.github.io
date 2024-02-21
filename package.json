@@ -9,7 +9,7 @@
     "start": "npm install && gulp"
   },
   "devDependencies": {
-    "browser-sync": "^2.29.3",
+    "browser-sync": "^3.0.2",
     "gh-pages": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
