@@ -14,15 +14,19 @@
   <body>
     <main>
       <section class="container">
+        <div class="lang-toggle">
+          <a data-lang="pt" href="#">PT</a>
+          <a data-lang="en" href="#">EN</a>
+        </div>
         <div class="content">
-          <h1>Alírio Guerra</h1>
-          <p>Desenvolvedor javascript sênior</p>
+          <h1 id="name">Alírio Guerra</h1>
+          <p id="role">Desenvolvedor javascript sênior</p>
         </div>
         <div class="footer">
           <a href="https://www.linkedin.com/in/alirioguerra/" target="_blank">
             Linkedin
           </a>
-          <a href="mailto:alirioguerra.92@gmail.com">Email</a>
+          <a href="mailto:alirioguerra.92@gmail.com">E-mail</a>
         </div>
       </section>
     </main>
@@ -42,6 +46,15 @@
     font-optical-sizing: auto;
     padding: 40px;
     height: 100vh;
+    color: #000;
+  }
+
+  .lang-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 16px;
   }
 
   .container {
@@ -123,4 +136,55 @@
       background-position: 0% 50%;
     }
   }
+
+  /* Dark Mode Styles */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    .container {
+      background-image: linear-gradient(135deg, #232526, #414345, #000000);
+      color: #dcdcdc;
+    }
+
+    a {
+      color: #cfcfcf;
+    }
+
+    a:hover {
+      color: #ffffff;
+    }
+  }
 </style>
+
+<script>
+  const langToggle = document.querySelectorAll(".lang-toggle a");
+  const role = document.getElementById("role");
+
+  function setLanguage(lang) {
+    if (lang === "pt") {
+      role.textContent = "Desenvolvedor javascript sênior";
+    } else if (lang === "en") {
+      role.textContent = "Senior javascript developer";
+    } else {
+      role.textContent = "Senior javascript developer";
+    }
+  }
+
+  const systemLang = navigator.language || navigator.userLanguage;
+  if (systemLang.startsWith("pt")) {
+    setLanguage("pt");
+  } else {
+    setLanguage("en");
+  }
+
+  langToggle.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const lang = link.dataset.lang;
+      setLanguage(lang);
+    });
+  });
+</script>
