@@ -1,1 +1,126 @@
-no-data
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Alírio Guerra - Desenvolvedor javascript sênior</title>
+  </head>
+  <body>
+    <main>
+      <section class="container">
+        <div class="content">
+          <h1>Alírio Guerra</h1>
+          <p>Desenvolvedor javascript sênior</p>
+        </div>
+        <div class="footer">
+          <a href="https://www.linkedin.com/in/alirioguerra/" target="_blank">
+            Linkedin
+          </a>
+          <a href="mailto:alirioguerra.92@gmail.com">Email</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #fffbff;
+    font-family: "Maven Pro", serif;
+    font-optical-sizing: auto;
+    padding: 40px;
+    height: 100vh;
+  }
+
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 90vh;
+    background-image: linear-gradient(135deg, #667eea, #764ba2, #537895);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    border-radius: 10px;
+    padding: 20px;
+    color: #fffbff;
+  }
+
+  h1 {
+    font-size: 10rem;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 16px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding: 20px;
+    }
+
+    .container {
+      height: 95dvh;
+    }
+
+    h1 {
+      font-size: 6rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
