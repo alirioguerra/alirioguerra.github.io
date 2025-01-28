@@ -14,18 +14,15 @@
   <body>
     <main>
       <section class="container">
-        <div class="lang-toggle">
-          <a data-lang="pt" href="#">PT</a>
-          <a data-lang="en" href="#">EN</a>
-        </div>
         <div class="content">
           <h1 id="name">Alírio Guerra</h1>
           <p id="role">Desenvolvedor javascript sênior</p>
         </div>
         <div class="footer">
           <a href="https://www.linkedin.com/in/alirioguerra/" target="_blank">
-            Linkedin
+            LinkedIn
           </a>
+          <a href="https://github.com/alirioguerra" target="_blank"> github </a>
           <a href="mailto:alirioguerra.92@gmail.com">E-mail</a>
         </div>
       </section>
@@ -168,6 +165,7 @@
       role.textContent = "Desenvolvedor javascript sênior";
     } else if (lang === "en") {
       role.textContent = "Senior javascript developer";
+      portfolio.textContent = "Portfolio";
     } else {
       role.textContent = "Senior javascript developer";
     }
