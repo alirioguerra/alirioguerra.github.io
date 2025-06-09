@@ -1,188 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap"
-      rel="stylesheet"
-    />
-    <title>Alírio Guerra - Desenvolvedor javascript</title>
-  </head>
-  <body>
-    <main>
-      <section class="container">
-        <div class="content">
-          <h1 id="name">Alírio Guerra</h1>
-          <p id="role">Desenvolvedor javascript sênior.</p>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+  <title>Alírio Guerra - Senior javascript developer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <link href="./assets/index.css" rel="stylesheet">
+</head>
+<body class="bg-white font-sans p-4 text-black h-full">
+  <main class="h-full">
+    <section class="relative flex flex-col items-start justify-between h-full bg-primary p-10 rounded-2xl text-black">
+      <div class="flex items-center justify-between w-full">
+        <h1 id="name" class="text-xl md:text-4xl font-bold uppercase">Alírio Guerra</h1>
+        <div>
+          <a href="?lang=pt" class="lang-toggle" data-lang="pt" aria-selected="false">PT</a>
+          <a href="?lang=en" class="lang-toggle" data-lang="en" aria-selected="false">EN</a>
         </div>
-        <div class="footer">
-          <a href="https://www.linkedin.com/in/alirioguerra/" target="_blank">
+      </div>
+      <div class="md:max-w-2xl">
+        <p id="role" class="text-2xl md:text-8xl font-black uppercase">Front-end developer</p>
+      </div>
+      <div class="w-full uppercase flex justify-between gap-4">
+        <p id="experience" class="text-sm md:text-base">10 anos de experiência em desenvolvimento web</p>
+        <div class="flex gap-4">
+          <a href="https://www.linkedin.com/in/alirioguerra/" target="_blank" class="hover:underline">
             LinkedIn
           </a>
-          <a href="https://github.com/alirioguerra" target="_blank"> GitHub </a>
-          <a href="mailto:alirioguerra.92@gmail.com">E-mail</a>
+          <a href="https://github.com/alirioguerra" target="_blank" class="hover:underline">
+            GitHub
+          </a>
+          <a href="mailto:alirioguerra.92@gmail.com" class="hover:underline">
+            E-mail
+          </a>
         </div>
-      </section>
-    </main>
-  </body>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/main.js"></script>
+</body>
 </html>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    background-color: #fffbff;
-    font-family: "Maven Pro", serif;
-    font-optical-sizing: auto;
-    padding: 40px;
-    height: 100vh;
-    color: #000;
-  }
-
-  .lang-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 16px;
-  }
-
-  .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    height: 90vh;
-    background-image: linear-gradient(135deg, #667eea, #764ba2, #537895);
-    background-size: 400% 400%;
-    animation: gradientAnimation 10s ease infinite;
-    border-radius: 10px;
-    padding: 20px;
-    color: #fffbff;
-  }
-
-  h1 {
-    font-size: 10rem;
-    margin-bottom: 16px;
-  }
-
-  p {
-    font-size: 2rem;
-    margin-bottom: 32px;
-  }
-
-  a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 20px;
-    display: flex;
-    gap: 16px;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    body {
-      padding: 20px;
-    }
-
-    .container {
-      height: 95dvh;
-    }
-
-    h1 {
-      font-size: 6rem;
-    }
-    p {
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 4rem;
-    }
-    p {
-      font-size: 1.2rem;
-    }
-  }
-
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  /* Dark Mode Styles */
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #1a1a1a;
-      color: #fff;
-    }
-
-    .container {
-      background-image: linear-gradient(135deg, #232526, #414345, #000000);
-      color: #dcdcdc;
-    }
-
-    a {
-      color: #cfcfcf;
-    }
-
-    a:hover {
-      color: #ffffff;
-    }
-  }
-</style>
-
-<script>
-  const langToggle = document.querySelectorAll(".lang-toggle a");
-  const role = document.getElementById("role");
-
-  function setLanguage(lang) {
-    if (lang === "pt") {
-      role.textContent = "Desenvolvedor javascript sênior";
-    } else if (lang === "en") {
-      role.textContent = "Senior javascript developer";
-      portfolio.textContent = "Portfolio";
-    } else {
-      role.textContent = "Senior javascript developer";
-    }
-  }
-
-  const systemLang = navigator.language || navigator.userLanguage;
-  if (systemLang.startsWith("pt")) {
-    setLanguage("pt");
-  } else {
-    setLanguage("en");
-  }
-
-  langToggle.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const lang = link.dataset.lang;
-      setLanguage(lang);
-    });
-  });
-</script>
