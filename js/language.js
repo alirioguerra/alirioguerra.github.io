@@ -1,5 +1,5 @@
-import data from '../pt.json' assert { type: 'json' };
-import dataEn from '../en.json' assert { type: 'json' };
+import data from '../pt.json';
+import dataEn from '../en.json';
 import { animateContentChange } from './animations.js';
 
 const SUPPORTED_LANGUAGES = ['en', 'pt'];
@@ -14,7 +14,7 @@ export function getCurrentLanguage() {
     return urlLang;
   }
   
-  const browserLang = navigator.language || navigator.userLanguage;
+  const browserLang = navigator.language;
   return browserLang.startsWith('pt') ? 'pt' : 'en';
 }
 
