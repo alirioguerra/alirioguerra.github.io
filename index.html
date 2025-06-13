@@ -43,6 +43,197 @@
       </div>
     </section>
   </main>
-  <script type="module" src="/main.js"></script>
+  <script>
+    // Language data
+    const data = {
+      "name": "Alírio Guerra",
+      "role": "Desenvolvedor front-end",
+      "back": "← Voltar",
+      "links": {
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "email": "E-mail"
+      },
+      "experience": "10 anos de experiência em desenvolvimento web"
+    };
+
+    const dataEn = {
+      "name": "Alírio Guerra",
+      "role": "Front-end developer",
+      "back": "← Back",
+      "links": {
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "email": "E-mail"
+      },
+      "experience": "10 years of experience in web development"
+    };
+
+    const SUPPORTED_LANGUAGES = ['en', 'pt'];
+
+    // Favicon constants
+    const FAVICONS = {
+      default: '🚀',
+      hover: '👀'
+    };
+
+    // Animation functions
+    function initializeAnimations() {
+      const gsap = window.gsap;
+      if (!gsap) {
+        console.warn('GSAP not loaded. Animations will not work.');
+        return;
+      }
+
+      // Name animation
+      gsap.from('#name', {
+        duration: 1,
+        y: -50,
+        opacity: 0,
+        ease: 'power3.out'
+      });
+
+      // Role animation
+      gsap.from('#role', {
+        duration: 1.2,
+        y: 50,
+        opacity: 0,
+        ease: 'power3.out',
+        delay: 0.3
+      });
+
+      // Experience animation
+      gsap.from('#experience', {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        ease: 'power3.out',
+        delay: 0.6
+      });
+
+      // Language toggle animation
+      gsap.from('.lang-toggle', {
+        duration: 0.8,
+        scale: 0,
+        opacity: 0,
+        ease: 'back.out(1.7)',
+        stagger: 0.2
+      });
+    }
+
+    function animateContentChange(elements, updateContent) {
+      const gsap = window.gsap;
+      if (!gsap) {
+        updateContent();
+        return;
+      }
+
+      gsap.to(elements, {
+        duration: 0.5,
+        opacity: 0,
+        y: 20,
+        onComplete: () => {
+          updateContent();
+          gsap.to(elements, {
+            duration: 0.5,
+            opacity: 1,
+            y: 0
+          });
+        }
+      });
+    }
+
+    // Language functions
+    function getCurrentLanguage() {
+      const urlLang = new URLSearchParams(window.location.search).get('lang');
+      if (urlLang && SUPPORTED_LANGUAGES.includes(urlLang)) {
+        return urlLang;
+      }
+      
+      const browserLang = navigator.language;
+      return browserLang.startsWith('pt') ? 'pt' : 'en';
+    }
+
+    function updateLanguageUI(lang) {
+      const langToggles = document.querySelectorAll('.lang-toggle');
+      langToggles.forEach(toggle => {
+        if (toggle instanceof HTMLElement) {
+          if (toggle.dataset.lang === lang) {
+            toggle.classList.add('underline');
+          } else {
+            toggle.classList.remove('underline');
+          }
+        }
+      });
+    }
+
+    function updateContent(lang) {
+      const content = lang === 'pt' ? data : dataEn;
+      const elements = {
+        name: document.getElementById('name'),
+        role: document.getElementById('role'),
+        experience: document.getElementById('experience')
+      };
+
+      if (!elements.name || !elements.role || !elements.experience) {
+        console.error('Required elements not found');
+        return;
+      }
+
+      animateContentChange(
+        [elements.name, elements.role, elements.experience],
+        () => {
+          elements.name.textContent = content.name;
+          elements.role.textContent = content.role;
+          elements.experience.textContent = content.experience;
+        }
+      );
+    }
+
+    function initializeLanguageSystem() {
+      const currentLang = getCurrentLanguage();
+      updateContent(currentLang);
+      updateLanguageUI(currentLang);
+
+      // Add click handlers for language toggles
+      document.querySelectorAll('.lang-toggle').forEach(link => {
+        if (link instanceof HTMLElement) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = link.dataset.lang;
+            if (SUPPORTED_LANGUAGES.includes(lang)) {
+              updateContent(lang);
+              updateLanguageUI(lang);
+            }
+          });
+        }
+      });
+    }
+
+    // Favicon functions
+    function updateFavicon(emoji) {
+      const favicon = document.querySelector('link[rel="icon"]');
+      if (favicon) {
+        favicon.href = `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${emoji}</text></svg>`;
+      }
+    }
+
+    function initializeFavicon() {
+      document.addEventListener('mouseleave', () => {
+        updateFavicon(FAVICONS.hover);
+      });
+
+      document.addEventListener('mouseenter', () => {
+        updateFavicon(FAVICONS.default);
+      });
+    }
+
+    // Initialize everything when the DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeAnimations();
+      initializeLanguageSystem();
+      initializeFavicon();
+    });
+  </script>
 </body>
 </html>
