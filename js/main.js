@@ -1,32 +1,3 @@
-// Locomotive Scroll
-import LocomotiveScroll from 'locomotive-scroll';
-
-        // Detecta se é dispositivo móvel
-        const isMobile = window.innerWidth <= 768;
-        
-        let scroll;
-        
-        if (!isMobile) {
-          // Locomotive Scroll apenas para desktop
-          scroll = new LocomotiveScroll({
-            el: document.querySelector('[data-scroll-container]'),
-            smooth: true,
-            lerp: 0.1,
-            multiplier: 0.5,
-          });
-        }
-
-// Update scroll on page load
-if (scroll) {
-  scroll.update();
-}
-
-// Update scroll on window resize
-window.addEventListener('resize', () => {
-  if (scroll) {
-    scroll.update();
-  }
-});
 
 // Animações de entrada para elementos do portfólio
 if (scroll) {
@@ -80,18 +51,3 @@ if (title) {
     pauseFor: 15000,
   });
 }
-// class 'anime' for each nth-child anime in sequence
-const anime = document.querySelectorAll(".anime");
-
-function addClassToAnime() {
-  anime.forEach((anime) => {
-    const animeTop = anime.getBoundingClientRect().top;
-    const animeBottom = anime.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
-    if (animeTop < windowHeight && animeBottom > windowHeight) {
-      anime.classList.add("show");
-    }
-  });
-}
-
-window.addEventListener("scroll", addClassToAnime);
