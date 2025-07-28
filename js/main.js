@@ -1,22 +1,22 @@
 // Locomotive Scroll
 import LocomotiveScroll from 'locomotive-scroll';
 
-const scroll = new LocomotiveScroll({
-  el: document.querySelector('[data-scroll-container]'),
-  smooth: true,
-  lerp: 0.1,
-  multiplier: 0.5,
-  smartphone: {
-    smooth: true,
-    lerp: 0.1,
-    multiplier: 0.5,
-  },
-  tablet: {
-    smooth: true,
-    lerp: 0.1,
-    multiplier: 0.5,
-  }
-});
+        const scroll = new LocomotiveScroll({
+          el: document.querySelector('[data-scroll-container]'),
+          smooth: true,
+          lerp: 0.1,
+          multiplier: 0.5,
+          smartphone: {
+            smooth: true,
+            lerp: 0.05,
+            multiplier: 1.2,
+          },
+          tablet: {
+            smooth: true,
+            lerp: 0.08,
+            multiplier: 1.0,
+          }
+        });
 
 // Update scroll on page load
 scroll.update();
