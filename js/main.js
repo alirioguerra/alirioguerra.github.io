@@ -1,17 +1,44 @@
-const workSingle = document.querySelectorAll(".work-single");
+// Locomotive Scroll
+import LocomotiveScroll from 'locomotive-scroll';
 
-function addClassToElement() {
-  workSingle.forEach((work) => {
-    const workTop = work.getBoundingClientRect().top;
-    const workBottom = work.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
-    if (workTop < windowHeight && workBottom > windowHeight) {
-      work.classList.add("show");
+const scroll = new LocomotiveScroll({
+  el: document.querySelector('[data-scroll-container]'),
+  smooth: true,
+  lerp: 0.1,
+  multiplier: 0.5,
+  smartphone: {
+    smooth: true,
+    lerp: 0.1,
+    multiplier: 0.5,
+  },
+  tablet: {
+    smooth: true,
+    lerp: 0.1,
+    multiplier: 0.5,
+  }
+});
+
+// Update scroll on page load
+scroll.update();
+
+// Update scroll on window resize
+window.addEventListener('resize', () => {
+  scroll.update();
+});
+
+// Animações de entrada para elementos do portfólio
+scroll.on('scroll', (args) => {
+  // Animar elementos do portfólio quando entram na viewport
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach((item, index) => {
+    const progress = args.currentElements[item.dataset.scrollId]?.progress || 0;
+    
+    if (progress > 0.1) {
+      item.style.opacity = '1';
+      item.style.transform = 'translateY(0)';
     }
   });
-}
-
-window.addEventListener("scroll", addClassToElement);
+});
 
 const title = document.querySelector("#title");
 if (title) {

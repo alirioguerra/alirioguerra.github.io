@@ -8,6 +8,8 @@ Portfolio pessoal desenvolvido com HTML, JavaScript e Tailwind CSS.
 - JavaScript
 - Tailwind CSS
 - PostCSS
+- Locomotive Scroll
+- Vite
 
 ## 📦 Instalação
 
@@ -22,6 +24,8 @@ npm install
 - `npm run dev` - Apenas o watch do CSS do Tailwind
 - `npm run build` - Gera o CSS do Tailwind em modo watch
 - `npm run build:prod` - Gera o CSS otimizado para produção
+- `npm run build:js` - Gera o JavaScript otimizado
+- `npm run build:js:watch` - Gera o JavaScript em modo watch
 
 ## 🎨 Estrutura do Projeto
 
@@ -47,4 +51,6 @@ Para começar a desenvolver:
 
 - O arquivo `style.css` é gerado automaticamente, não edite manualmente
 - Para adicionar estilos customizados, use `@layer` no `input.css`
-- O projeto foi migrado do Gulp para Tailwind CSS para melhor performance
+- O arquivo `index.min.js` é gerado automaticamente pelo Vite
+- O projeto foi migrado do Gulp para Tailwind CSS + Locomotive Scroll para melhor performance
+- Locomotive Scroll adiciona scroll suave e efeitos de parallax
