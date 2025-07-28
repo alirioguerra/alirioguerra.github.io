@@ -6,20 +6,22 @@
   "author": "Alírio Guerra",
   "license": "MIT",
   "scripts": {
-    "start": "npm install && gulp"
+    "build": "postcss input.css -o style.css --watch",
+    "build:prod": "postcss input.css -o style.css --env production",
+    "dev": "postcss input.css -o style.css --watch",
+    "preview": "live-server --port=3000 --open=/index.html",
+    "start": "concurrently \"npm run dev\" \"npm run preview\""
   },
   "devDependencies": {
-    "browser-sync": "^2.29.3",
+    "@tailwindcss/postcss": "^4.1.11",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
     "gh-pages": "^5.0.0",
-    "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^8.0.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-uglifycss": "^1.1.0",
     "imagemin": "^8.0.1",
     "imagemin-webp": "^8.0.0",
-    "sass": "^1.63.3"
+    "live-server": "^1.2.2",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^3.4.0"
   }
 }
