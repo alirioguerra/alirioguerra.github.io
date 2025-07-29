@@ -668,12 +668,6 @@ video {
     border-radius: 10px;
   }
 /* Animações para os projetos */
-.work-item.show {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-            transform: translateY(0);
-  }
 /* Animações de entrada para portfólio */
 .portfolio-item {
     opacity: 0;
