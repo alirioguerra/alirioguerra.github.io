@@ -8,7 +8,6 @@ Portfolio pessoal desenvolvido com HTML, JavaScript e Tailwind CSS.
 - JavaScript
 - Tailwind CSS
 - PostCSS
-- Locomotive Scroll
 - Vite
 
 ## 📦 Instalação
@@ -52,5 +51,4 @@ Para começar a desenvolver:
 - O arquivo `style.css` é gerado automaticamente, não edite manualmente
 - Para adicionar estilos customizados, use `@layer` no `input.css`
 - O arquivo `index.min.js` é gerado automaticamente pelo Vite
-- O projeto foi migrado do Gulp para Tailwind CSS + Locomotive Scroll para melhor performance
-- Locomotive Scroll adiciona scroll suave e efeitos de parallax
+- O projeto foi migrado do Gulp para Tailwind CSS para melhor performance

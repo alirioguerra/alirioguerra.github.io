@@ -2,50 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Locomotive Scroll CSS */
-html.has-scroll-smooth {
-  overflow: hidden;
-}
 
-html.has-scroll-dragging {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.c-scrollbar {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 11px;
-  height: 100vh;
-  transform-origin: center right;
-  transition: transform 0.3s, opacity 0.3s;
-  opacity: 0;
-}
-
-.c-scrollbar:hover {
-  transform: scaleX(1.45);
-}
-
-.c-scrollbar_thumb {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: black;
-  opacity: 0.5;
-  width: 7px;
-  border-radius: 10px;
-  margin: 2px;
-  cursor: -webkit-grab;
-  cursor: grab;
-}
-
-.has-scroll-dragging .c-scrollbar_thumb {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-}
 
 @layer base {
   html {
@@ -99,10 +56,12 @@ html.has-scroll-dragging {
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .portfolio-item[data-scroll] {
+  .portfolio-item.show {
     opacity: 1;
     transform: translateY(0);
   }
+
+
 
   /* Animações de entrada para imagens */
   .portfolio-image {
@@ -111,7 +70,7 @@ html.has-scroll-dragging {
     transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .portfolio-image[data-scroll] {
+  .portfolio-image.show {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
@@ -124,7 +83,7 @@ html.has-scroll-dragging {
     transition-delay: 0.2s;
   }
 
-  .portfolio-content[data-scroll] {
+  .portfolio-content.show {
     opacity: 1;
     transform: translateX(0);
   }
@@ -136,15 +95,15 @@ html.has-scroll-dragging {
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
+  .tech-tag.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
   .tech-tag:nth-child(1) { transition-delay: 0.3s; }
   .tech-tag:nth-child(2) { transition-delay: 0.4s; }
   .tech-tag:nth-child(3) { transition-delay: 0.5s; }
   .tech-tag:nth-child(4) { transition-delay: 0.6s; }
-
-  .tech-tag[data-scroll] {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 
   /* Hover effects */
   .portfolio-item:hover .portfolio-image {
@@ -162,7 +121,7 @@ html.has-scroll-dragging {
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .resume-section[data-scroll] {
+  .resume-section.show {
     opacity: 1;
     transform: translateY(0);
   }
@@ -171,6 +130,11 @@ html.has-scroll-dragging {
     opacity: 0;
     transform: translateX(-20px);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .skill-item.show {
+    opacity: 1;
+    transform: translateX(0);
   }
 
   .skill-item:nth-child(1) { transition-delay: 0.1s; }
@@ -198,24 +162,19 @@ html.has-scroll-dragging {
   .skill-item:nth-child(23) { transition-delay: 1.2s; }
   .skill-item:nth-child(24) { transition-delay: 1.25s; }
 
-  .skill-item[data-scroll] {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
   .resume-experience {
     opacity: 0;
     transform: translateX(-50px);
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
+  .resume-experience.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
   .resume-experience:nth-child(1) { transition-delay: 0.1s; }
   .resume-experience:nth-child(2) { transition-delay: 0.2s; }
   .resume-experience:nth-child(3) { transition-delay: 0.3s; }
   .resume-experience:nth-child(4) { transition-delay: 0.4s; }
-
-  .resume-experience[data-scroll] {
-    opacity: 1;
-    transform: translateX(0);
-  }
 } 

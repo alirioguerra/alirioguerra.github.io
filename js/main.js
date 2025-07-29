@@ -1,37 +1,14 @@
 // Importa otimizações de performance
 import './performance.js';
-import { getScrollConfig, initScroll, optimizeScrollEvents } from './scroll-config.js';
-import { shouldUseNativeScroll, initNativeScrollOptimized } from './mobile-fallback.js';
 
 // Detecção de dispositivo móvel
 const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
                  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) ||
                  window.innerWidth < 768;
 
-// Inicializa scroll baseado na performance do dispositivo
-let scroll;
-
-if (shouldUseNativeScroll()) {
-  // Usa scroll nativo para dispositivos com baixa performance
-  initNativeScrollOptimized();
-} else if (!isMobile || (isMobile && getScrollConfig(isMobile).smartphone.smooth)) {
-  const config = getScrollConfig(isMobile);
-  scroll = initScroll(config);
-  
-  if (scroll) {
-    optimizeScrollEvents(scroll);
-  } else {
-    // Fallback para scroll nativo
-    initNativeScroll();
-  }
-} else {
-  // Fallback para scroll nativo em mobile
-  initNativeScroll();
-}
-
-// Função de fallback para scroll nativo otimizado
+// Função para inicializar scroll nativo otimizado
 function initNativeScroll() {
-  // Intersection Observer otimizado para mobile
+  // Intersection Observer otimizado para animações
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -40,9 +17,8 @@ function initNativeScroll() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Usar transform3d para forçar aceleração de hardware
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translate3d(0, 0, 0)';
+        // Adiciona a classe show para ativar as animações
+        entry.target.classList.add('show');
       }
     });
   }, observerOptions);
@@ -52,11 +28,39 @@ function initNativeScroll() {
     observer.observe(item);
   });
   
+  // Observe portfolio images
+  document.querySelectorAll('.portfolio-image').forEach(item => {
+    observer.observe(item);
+  });
+  
+  // Observe portfolio content
+  document.querySelectorAll('.portfolio-content').forEach(item => {
+    observer.observe(item);
+  });
+  
+  // Observe tech tags
+  document.querySelectorAll('.tech-tag').forEach(item => {
+    observer.observe(item);
+  });
+  
   // Observe resume sections
-  document.querySelectorAll('.resume-section, .skill-item, .resume-experience').forEach(item => {
+  document.querySelectorAll('.resume-section').forEach(item => {
+    observer.observe(item);
+  });
+  
+  // Observe skill items
+  document.querySelectorAll('.skill-item').forEach(item => {
+    observer.observe(item);
+  });
+  
+  // Observe resume experience
+  document.querySelectorAll('.resume-experience').forEach(item => {
     observer.observe(item);
   });
 }
+
+// Inicializa scroll nativo
+initNativeScroll();
 
 // Typewriter effect
 const title = document.querySelector("#title");
