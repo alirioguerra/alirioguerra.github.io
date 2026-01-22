@@ -18,12 +18,8 @@
       property="og:title"
       content="Alírio Guerra - Desenvolverdor front-end JavaScript."
     />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css?family=Lalezar|Montserrat:300&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css" />
     <link
       rel="preload"
@@ -32,12 +28,12 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
   </head>
-  <body class="bg-black/90 text-white font-montserrat text-sm scroll-smooth">
+  <body class="bg-black/90 text-white font-source-code-pro text-sm scroll-smooth">
     <section id="home" class="min-h-screen flex flex-col justify-between">
       <div class="flex-1 flex items-center py-36">
         <div class="container mx-auto px-4 max-w-6xl">
-          <h1 id="title" data-name="Alírio Guerra." class="text-6xl md:text-8xl font-lalezar tracking-wider text-white mb-4">Alírio Guerra.</h1>
-          <p class="text-lg md:text-2xl font-montserrat tracking-wide max-w-md mb-8">Desenvolvedor front-end JavaScript</p>
+          <h1 id="title" data-name="Alírio Guerra" class="font-bold text-6xl md:text-8xl font-source-code-pro text-white mb-4">Alírio Guerra</h1>
+          <p class="text-lg md:text-2xl font-source-code-pro tracking-wide max-w-md mb-8">Desenvolvedor front-end JavaScript</p>
           <ul class="flex items-center gap-5 mt-5 text-2xl">
             <li>
               <a
@@ -64,8 +60,8 @@
     <section id="about" class="min-h-screen flex flex-col justify-between">
       <div class="flex-1 flex items-center py-36">
         <div class="container mx-auto px-4 max-w-6xl">
-          <h2 data-name="sobre." class="text-6xl md:text-8xl font-lalezar tracking-wider text-white mb-8">Sobre.</h2>
-          <p class="text-lg md:text-2xl font-montserrat tracking-wide max-w-2xl mb-8">
+          <h2 data-name="sobre." class="text-6xl md:text-8xl font-source-code-pro font-bold  text-white mb-8">Sobre.</h2>
+          <p class="text-lg md:text-2xl font-source-code-pro tracking-wide max-w-2xl mb-8">
             Desenvolvedor Front-end com mais de 8 anos de experiência,
             especializado em JavaScript. Proficiente também em HTML, CSS, com
             experiência sólida no desenvolvimento de interfaces e aplicativos
@@ -81,152 +77,14 @@
         </div>
       </div>
     </section>
-    <section id="work" class="min-h-screen flex flex-col justify-between">
-      <div class="flex-1 flex items-center py-36">
-        <div class="container mx-auto px-4 max-w-6xl">
-          <h2 data-name="Portfólio." class="text-6xl md:text-8xl font-lalezar tracking-wider text-white mb-8">Portfólio.</h2>
-          <p class="text-lg md:text-2xl font-montserrat tracking-wide mb-12">Meus projetos recentes</p>
-          <div class="grid gap-8">
-                          <a href="https://lunera.com.br" target="_blank" class="portfolio-item grid md:grid-cols-[670px_1fr] gap-8 items-center group cursor-pointer">
-                              <div class="portfolio-image w-full overflow-hidden rounded-lg">
-                <img
-                  class="w-full h-auto object-cover transition-transform duration-300"
-                  width="1920"
-                  height="954"
-                  src="./assets/img/lunera.webp"
-                  alt="Lunera Comunicação"
-                />
-              </div>
-                              <div class="portfolio-content flex flex-col items-start gap-2">
-                <h3 class="text-4xl md:text-6xl font-lalezar tracking-wider text-white uppercase">Lunera Produções</h3>
-                <div class="flex items-center gap-3">
-                                      <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase">NUXT</span>
-                    <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase">TYPESCRIPT</span>
-                    <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase">POSTGRES</span>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://triboajudatribo.com.br"
-              target="_blank"
-              class="portfolio-item grid md:grid-cols-[670px_1fr] gap-8 items-center group cursor-pointer"
-
-            >
-              <div class="portfolio-image w-full overflow-hidden rounded-lg">
-                <img
-                  class="w-full h-auto object-cover transition-transform duration-300"
-                  width="1920"
-                  height="954"
-                  src="./assets/img/tribo-ajuda-tribo.webp"
-                  alt="Tribo Ajuda Tribo - Gaules"
-                />
-              </div>
-              <div class="portfolio-content flex flex-col items-start gap-2">
-                <h3 class="text-4xl md:text-6xl font-lalezar tracking-wider text-white uppercase">Gaules Tribo Ajuda Tribo</h3>
-                <div class="flex items-center gap-3">
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase">VUE</span>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://www.baiano.tv/multi/"
-              target="_blank"
-              class="portfolio-item grid md:grid-cols-[670px_1fr] gap-8 items-center group cursor-pointer"
-
-            >
-              <div class="portfolio-image w-full overflow-hidden rounded-lg">
-                <img
-                  class="w-full h-auto object-cover transition-transform duration-300"
-                  width="1920"
-                  height="954"
-                  src="./assets/img/multi.webp"
-                  alt="Site Baiano Multi Lives"
-                />
-              </div>
-              <div class="portfolio-content flex flex-col items-start gap-2">
-                <h3 class="text-4xl md:text-6xl font-lalezar tracking-wider text-white uppercase">Baiano Multi Lives</h3>
-                <div class="flex items-center gap-3">
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase">VUE</span>
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase">REACT</span>
-                </div>
-              </div>
-            </a>
-
-            <a
-              href="https://www.baiano.tv/cartinhas/"
-              target="_blank"
-              class="portfolio-item grid md:grid-cols-[670px_1fr] gap-8 items-center group cursor-pointer"
-              
-            >
-              <div class="portfolio-image w-full overflow-hidden rounded-lg" >
-                <img
-                  class="w-full h-auto object-cover transition-transform duration-300"
-                  width="1920"
-                  height="954"
-                  src="./assets/img/cartinhas.webp"
-                  alt="Site Baiano Cartinhas"
-                />
-              </div>
-              <div class="portfolio-content flex flex-col items-start gap-2" >
-                <h3 class="text-4xl md:text-6xl font-lalezar tracking-wider text-white uppercase">Baiano Cartinhas</h3>
-                <div class="flex items-center gap-3">
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase" >VUE</span>
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase" >REACT</span>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://pacificacontinental.com/"
-              target="_blank"
-              class="portfolio-item grid md:grid-cols-[670px_1fr] gap-8 items-center group cursor-pointer"
-              
-            >
-              <div class="portfolio-image w-full overflow-hidden rounded-lg" >
-                <img
-                  class="w-full h-auto object-cover transition-transform duration-300"
-                  width="1920"
-                  height="954"
-                  src="./assets/img/pacifica.webp"
-                  alt="Site Pacifica"
-                />
-              </div>
-              <div class="portfolio-content flex flex-col items-start gap-2" >
-                <h3 class="text-4xl md:text-6xl font-lalezar tracking-wider text-white uppercase">Pacífica</h3>
-                <div class="flex items-center gap-3">
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase" >HTML</span>
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase" >Sass</span>
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase" >Wordpress</span>
-                </div>
-              </div>
-            </a>
-            <a
-              href="https://usevuala.com.br/"
-              target="_blank"
-              class="portfolio-item grid md:grid-cols-[670px_1fr] gap-8 items-center group cursor-pointer"
-              
-            >
-              <div class="portfolio-image w-full overflow-hidden rounded-lg" >
-                <img
-                  class="w-full h-auto object-cover transition-transform duration-300"
-                  width="1920"
-                  height="954"
-                  src="./assets/img/vuala.webp"
-                  alt="Site Vualá"
-                />
-              </div>
-              <div class="portfolio-content flex flex-col items-start gap-2" >
-                <h3 class="text-4xl md:text-6xl font-lalezar tracking-wider text-white uppercase">Vualá</h3>
-                <div class="flex items-center gap-3">
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase" >Vue</span>
-                  <span class="tech-tag text-lg font-lalezar tracking-wider text-cyan-400 uppercase" >Rest</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    
+    <div class="relative p-10 flex justify-center items-center">
+      <a href="#"
+        class="inline-block px-4 py-2 text-white duration-300 rounded-md"
+      >
+      ↑
+      </a>
+    </div>
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <script src="index.min.js"></script>
   </body>

@@ -19,11 +19,11 @@
 }
 
 @layer components {
-  .font-lalezar {
+  .font-source-code-pro font-bold {
     font-family: 'Lalezar', cursive;
   }
   
-  .font-montserrat {
+  .font-source-code-pro {
     font-family: 'Montserrat', sans-serif;
   }
   

@@ -12,8 +12,7 @@ module.exports = {
         accent: '#F59E0B'
       },
       fontFamily: {
-        lalezar: ['Lalezar', 'cursive'],
-        montserrat: ['Montserrat', 'sans-serif']
+        "source-code-pro": ['Source Code Pro', 'sans-serif']
       }
     },
   },
