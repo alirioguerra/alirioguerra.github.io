@@ -2,6 +2,8 @@
 
 Portfolio pessoal desenvolvido com HTML, JavaScript e Tailwind CSS.
 
+Ao vivo em https://alirioguerra.github.io
+
 ## 🚀 Tecnologias
 
 - HTML5
@@ -30,7 +32,6 @@ npm install
 
 ```
 ├── index.html          # Página principal
-├── resume.html         # Página do currículo
 ├── input.css           # Arquivo CSS com diretivas do Tailwind
 ├── style.css           # CSS gerado pelo Tailwind (não editar)
 ├── tailwind.config.js  # Configuração do Tailwind
