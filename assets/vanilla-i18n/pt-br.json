@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "subtitle": "Desenvolvedor front-end JavaScript"
+  },
+  "skills": {
+    "title": "Habilidades."
+  },
+  "experience": {
+    "title": "Experiências profissionais.",
+    "follow55": {
+      "role": "Dev Front-End Pleno (vuejs / react native)",
+      "period": "set/2020 até <span id=\"date\">--/--</span>",
+      "description": "Atuação em projetos para grandes marcas como Natura, iFood, Banco BV e Electrolux, desenvolvendo interfaces modernas com Vue.js e React Native. Participação ativa em squads ágeis, colaborando com times multidisciplinares e realizando reuniões com clientes para alinhamento técnico e estratégico."
+    },
+    "freelancer": {
+      "title": "Dev Front-End Freelancer",
+      "role": "Desenvolvedor Web (vuejs / react native)",
+      "period": "dez/2017 até ago/2020",
+      "description": "Criação de e-commerces, landing pages e sistemas web personalizados para clientes como ADASA, COFEN e Lunera Produções. Atuação com tecnologias modernas, foco em performance, usabilidade e entrega de soluções sob medida."
+    },
+    "helio": {
+      "role": "Desenvolvedor Web (react / native)",
+      "period": "dez/2017 até jun/2018",
+      "description": "Desenvolvimento de sistema interno com Laravel e React.js, e criação de loja virtual com WordPress e WooCommerce. Participação em todas as etapas, da concepção à entrega."
+    },
+    "iglu": {
+      "role": "Desenvolvedor Front-end & web designer",
+      "period": "jan/2016 até fev/2018",
+      "description": "Criação de landing pages responsivas com HTML, CSS e JavaScript, com foco em performance, compatibilidade entre navegadores e fidelidade ao design."
+    }
+  }
+}

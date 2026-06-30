@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "subtitle": "Front-end JavaScript Developer"
+  },
+  "skills": {
+    "title": "Skills."
+  },
+  "experience": {
+    "title": "Professional experience.",
+    "follow55": {
+      "role": "Mid-level Front-End Developer (Vue.js / React Native)",
+      "period": "Sep/2020 to <span id=\"date\">--/--</span>",
+      "description": "Worked on projects for major brands such as Natura, iFood, Banco BV, and Electrolux, building modern interfaces with Vue.js and React Native. Active participation in agile squads, collaborating with multidisciplinary teams and meeting with clients for technical and strategic alignment."
+    },
+    "freelancer": {
+      "title": "Front-End Freelancer",
+      "role": "Web Developer (Vue.js / React Native)",
+      "period": "Dec/2017 to Aug/2020",
+      "description": "Built e-commerce stores, landing pages, and custom web systems for clients such as ADASA, COFEN, and Lunera Produções. Worked with modern technologies, focusing on performance, usability, and tailored solutions."
+    },
+    "helio": {
+      "role": "Web Developer (React / React Native)",
+      "period": "Dec/2017 to Jun/2018",
+      "description": "Developed an internal system with Laravel and React.js, and built an online store with WordPress and WooCommerce. Involved in every stage, from concept to delivery."
+    },
+    "iglu": {
+      "role": "Front-end Developer & Web Designer",
+      "period": "Jan/2016 to Feb/2018",
+      "description": "Created responsive landing pages with HTML, CSS, and JavaScript, focusing on performance, cross-browser compatibility, and design fidelity."
+    }
+  }
+}
