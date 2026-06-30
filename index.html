@@ -29,6 +29,37 @@
     />
   </head>
   <body class="bg-black/90 text-white font-source-code-pro text-sm scroll-smooth">
+    <div
+      id="lang-modal"
+      class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#191919] text-white font-source-code-pro px-6 transition-opacity duration-500 ease-out"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Idioma"
+    >
+      <div class="flex flex-col items-center gap-6">
+        <button
+          type="button"
+          data-lang-choice="pt-br"
+          class="text-4xl md:text-6xl tracking-wide text-white hover:text-white/70 transition-opacity"
+        >
+          Português
+        </button>
+        <button
+          type="button"
+          data-lang-choice="en"
+          class="text-4xl md:text-6xl tracking-wide text-white hover:text-white/70 transition-opacity"
+        >
+          English
+        </button>
+      </div>
+    </div>
+    <script>
+      if (localStorage.getItem("preferred-lang")) {
+        document.getElementById("lang-modal").classList.add("hidden");
+      } else {
+        document.body.classList.add("overflow-hidden");
+      }
+    </script>
     <select id="vanilla-i18n-toggler" class="sr-only" tabindex="-1" aria-hidden="true">
       <option value="pt-br">pt-br</option>
       <option value="en">en</option>
