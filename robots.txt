@@ -3,3 +3,5 @@ Allow: /
 Allow: /assets/
 Disallow: /dist/
 Disallow: /js/
+
+Sitemap: https://alirioguerra.github.io/sitemap.xml
