@@ -409,14 +409,29 @@ video {
 [hidden] {
   display: none;
 }
+  :root {
+    color-scheme: dark;
+    --page-bg: #191919;
+    --surface-bg: #191919;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --accent: #22d3ee;
+    --panel-rgb: 25 25 25;
+  }
+
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
-  
+
   body {
+    background-color: var(--page-bg);
+    color: var(--text-primary);
     font-family: 'Montserrat', sans-serif;
+    -webkit-transition: background-color 300ms ease, color 300ms ease;
+    transition: background-color 300ms ease, color 300ms ease;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Lalezar', cursive;
   }
@@ -659,58 +674,49 @@ video {
 .font-source-code-pro {
     font-family: 'Montserrat', sans-serif;
   }
-/* Scrollbar customizada */
-::-webkit-scrollbar {
-    width: 5px;
+.theme-surface {
+    background-color: var(--surface-bg);
+    color: var(--text-primary);
   }
-::-webkit-scrollbar-thumb {
-    background-color: white;
-    border-radius: 10px;
+.theme-secondary {
+    color: var(--text-secondary);
   }
-/* Animações para o Resume */
-.resume-section {
-    opacity: 0;
-    -webkit-transform: translateY(30px);
-        -ms-transform: translateY(30px);
-            transform: translateY(30px);
-    -webkit-transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.theme-muted {
+    color: var(--text-muted);
   }
-.resume-section.show {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
-            transform: translateY(0);
+.theme-accent {
+    color: var(--accent);
   }
-.skill-item {
-    opacity: 0;
-    -webkit-transform: translateX(-20px);
-        -ms-transform: translateX(-20px);
-            transform: translateX(-20px);
-    -webkit-transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+html,
+  .experience-panel-content {
+    scrollbar-width: none;
   }
-.skill-item.show {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
-            transform: translateX(0);
+html::-webkit-scrollbar,
+  .experience-panel-content::-webkit-scrollbar {
+    display: none;
+  }
+.experience-panel {
+    --panel-opacity: 0;
+    background-color: rgb(var(--panel-rgb) / var(--panel-opacity));
+    color: var(--text-primary);
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    pointer-events: none;
+    will-change: transform, background-color, backdrop-filter, opacity;
+  }
+.experience-panel.is-open {
+    pointer-events: auto;
+  }
+.experience-panel-content {
+    -ms-scroll-chaining: none;
+        overscroll-behavior: contain;
   }
 .resume-experience {
-    opacity: 0;
-    -webkit-transform: translateX(-50px);
-        -ms-transform: translateX(-50px);
-            transform: translateX(-50px);
-    -webkit-transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-.resume-experience.show {
     opacity: 1;
-    -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
   }
-.resume-experience:nth-child(n+1) { -webkit-transition-delay: 0.1s; transition-delay: 0.1s; }
 .sr-only {
   position: absolute;
   width: 1px;
@@ -734,11 +740,23 @@ video {
 .inset-0 {
   inset: 0px;
 }
+.bottom-6 {
+  bottom: 1.5rem;
+}
+.left-6 {
+  left: 1.5rem;
+}
 .right-6 {
   right: 1.5rem;
 }
+.top-16 {
+  top: 4rem;
+}
 .top-6 {
   top: 1.5rem;
+}
+.z-40 {
+  z-index: 40;
 }
 .z-50 {
   z-index: 50;
@@ -762,12 +780,6 @@ video {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.mb-8 {
-  margin-bottom: 2rem;
-}
-.mt-5 {
-  margin-top: 1.25rem;
-}
 .inline-block {
   display: inline-block;
 }
@@ -777,26 +789,20 @@ video {
   display: -ms-flexbox;
   display: flex;
 }
-.grid {
-  display: grid;
-}
 .hidden {
   display: none;
 }
-.min-h-screen {
-  min-height: 100vh;
+.h-full {
+  height: 100%;
+}
+.h-screen {
+  height: 100vh;
+}
+.max-w-3xl {
+  max-width: 48rem;
 }
 .max-w-6xl {
   max-width: 72rem;
-}
-.max-w-md {
-  max-width: 28rem;
-}
-.flex-1 {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 0%;
-      -ms-flex: 1 1 0%;
-          flex: 1 1 0%;
 }
 .select-none {
   -webkit-user-select: none;
@@ -823,20 +829,8 @@ video {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.justify-between {
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
 .gap-1 {
   gap: 0.25rem;
-}
-.gap-12 {
-  gap: 3rem;
-}
-.gap-3 {
-  gap: 0.75rem;
 }
 .gap-5 {
   gap: 1.25rem;
@@ -852,21 +846,8 @@ video {
 .overflow-hidden {
   overflow: hidden;
 }
-.scroll-smooth {
-  scroll-behavior: smooth;
-}
-.rounded-md {
-  border-radius: 0.375rem;
-}
-.bg-\[\#191919\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(25 25 25 / var(--tw-bg-opacity));
-}
-.bg-black\/90 {
-  background-color: rgb(0 0 0 / 0.9);
-}
-.p-10 {
-  padding: 2.5rem;
+.overflow-y-auto {
+  overflow-y: auto;
 }
 .px-4 {
   padding-left: 1rem;
@@ -876,13 +857,9 @@ video {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.py-36 {
-  padding-top: 9rem;
-  padding-bottom: 9rem;
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 .font-source-code-pro {
   font-family: Source Code Pro, sans-serif;
@@ -928,31 +905,23 @@ video {
 .tracking-wide {
   letter-spacing: 0.025em;
 }
-.text-cyan-400 {
-  --tw-text-opacity: 1;
-  color: rgb(34 211 238 / var(--tw-text-opacity));
-}
-.text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
-}
-.text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-.text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-white\/40 {
-  color: rgb(255 255 255 / 0.4);
-}
 .opacity-0 {
   opacity: 0;
+}
+.opacity-100 {
+  opacity: 1;
+}
+.opacity-40 {
+  opacity: 0.4;
+}
+.blur {
+  --tw-blur: blur(8px);
+  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.filter {
+  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition-opacity {
   -webkit-transition-property: opacity;
@@ -984,6 +953,9 @@ video {
   -webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
           transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
+.will-change-transform {
+  will-change: transform;
+}
 .hover\:scale-110:hover {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
@@ -991,19 +963,10 @@ video {
       -ms-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
           transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.hover\:text-white\/70:hover {
-  color: rgb(255 255 255 / 0.7);
+.hover\:opacity-70:hover {
+  opacity: 0.7;
 }
 @media (min-width: 768px) {
-
-  .md\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
 
   .md\:text-6xl {
     font-size: 3.75rem;
@@ -1014,4 +977,9 @@ video {
     font-size: 6rem;
     line-height: 1;
   }
-} 
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}

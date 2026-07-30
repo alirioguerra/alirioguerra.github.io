@@ -2,17 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
+  :root {
+    color-scheme: dark;
+    --page-bg: #191919;
+    --surface-bg: #191919;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --accent: #22d3ee;
+    --panel-rgb: 25 25 25;
+  }
+
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
-  
+
   body {
+    background-color: var(--page-bg);
+    color: var(--text-primary);
     font-family: 'Montserrat', sans-serif;
+    transition: background-color 300ms ease, color 300ms ease;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Lalezar', cursive;
   }
@@ -22,54 +34,58 @@
   .font-source-code-pro font-bold {
     font-family: 'Lalezar', cursive;
   }
-  
+
   .font-source-code-pro {
     font-family: 'Montserrat', sans-serif;
   }
-  
-  /* Scrollbar customizada */
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: white;
-    border-radius: 10px;
+
+  .theme-surface {
+    background-color: var(--surface-bg);
+    color: var(--text-primary);
   }
 
-  /* Animações para o Resume */
-  .resume-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .theme-secondary {
+    color: var(--text-secondary);
   }
 
-  .resume-section.show {
-    opacity: 1;
-    transform: translateY(0);
+  .theme-muted {
+    color: var(--text-muted);
   }
 
-  .skill-item {
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  .theme-accent {
+    color: var(--accent);
   }
 
-  .skill-item.show {
-    opacity: 1;
-    transform: translateX(0);
+  html,
+  .experience-panel-content {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  .experience-panel-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .experience-panel {
+    --panel-opacity: 0;
+    background-color: rgb(var(--panel-rgb) / var(--panel-opacity));
+    color: var(--text-primary);
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    pointer-events: none;
+    will-change: transform, background-color, backdrop-filter, opacity;
+  }
+
+  .experience-panel.is-open {
+    pointer-events: auto;
+  }
+
+  .experience-panel-content {
+    overscroll-behavior: contain;
   }
 
   .resume-experience {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .resume-experience.show {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
   }
-
-  .resume-experience:nth-child(n+1) { transition-delay: 0.1s; }
-} 
+}
