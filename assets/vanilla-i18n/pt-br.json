@@ -1,9 +1,6 @@
 {
   "hero": {
-    "subtitle": "Desenvolvedor front-end JavaScript"
-  },
-  "skills": {
-    "title": "Habilidades."
+    "description": "Engenheiro Front-end especializado em aplicações web e mobile, com foco em arquitetura de software, performance, Design Systems e desenvolvimento de produtos utilizando React, Vue e React Native. Experiência na integração com APIs, serviços de terceiros e modernização de aplicações legadas."
   },
   "experience": {
     "title": "Experiência.",
