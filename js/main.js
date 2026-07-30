@@ -9,8 +9,46 @@ const toggler = document.getElementById("vanilla-i18n-toggler");
 const langButtons = document.querySelectorAll("[data-lang]");
 const modal = document.getElementById("lang-modal");
 const modalButtons = document.querySelectorAll("[data-lang-choice]");
+const favicon = document.getElementById("favicon");
+const inactiveFavicons = ["👀", "☕", "🚀"];
 
 let i18nInstance = null;
+let faviconInterval = null;
+let faviconIndex = 0;
+
+function createEmojiFavicon(emoji) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
+function setFavicon(emoji) {
+  favicon.href = createEmojiFavicon(emoji);
+}
+
+function showActiveFavicon() {
+  clearInterval(faviconInterval);
+  faviconInterval = null;
+  faviconIndex = 0;
+  setFavicon("🧑‍💻");
+}
+
+function showInactiveFavicons() {
+  clearInterval(faviconInterval);
+  setFavicon(inactiveFavicons[faviconIndex]);
+  faviconInterval = setInterval(() => {
+    faviconIndex = (faviconIndex + 1) % inactiveFavicons.length;
+    setFavicon(inactiveFavicons[faviconIndex]);
+  }, 1500);
+}
+
+function syncFavicon() {
+  if (document.hidden || !document.hasFocus()) {
+    showInactiveFavicons();
+    return;
+  }
+
+  showActiveFavicon();
+}
 
 function syncLangToggle(lang) {
   langButtons.forEach((btn) => {
@@ -92,3 +130,9 @@ modalButtons.forEach((btn) => {
     closeLangModal();
   });
 });
+
+window.addEventListener("focus", syncFavicon);
+window.addEventListener("blur", syncFavicon);
+document.addEventListener("visibilitychange", syncFavicon);
+
+syncFavicon();
