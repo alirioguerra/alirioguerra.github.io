@@ -118,6 +118,17 @@ function setExperienceOpenState(open) {
   }
 }
 
+function syncExperienceFromProgress(self) {
+  const progress = self.progress ?? 0;
+  if (experiencePanel) {
+    experiencePanel.style.setProperty("--panel-opacity", String(progress));
+    const blur = `blur(${progress * 18}px)`;
+    experiencePanel.style.backdropFilter = blur;
+    experiencePanel.style.webkitBackdropFilter = blur;
+  }
+  setExperienceOpenState(progress >= 0.98);
+}
+
 function scrollToExperienceProgress(progress, smooth = true) {
   const st = experienceTimeline?.scrollTrigger;
   if (!st) return;
@@ -139,15 +150,17 @@ function closeExperience() {
 function initExperiencePanel() {
   if (!home || !homeInner || !experiencePanel || typeof gsap === "undefined") return;
 
+  window.scrollTo(0, 0);
+
   gsap.registerPlugin(ScrollTrigger);
-  gsap.set(experiencePanel, {
-    yPercent: 100,
-    "--panel-opacity": 0,
-    backdropFilter: "blur(0px)",
-    webkitBackdropFilter: "blur(0px)",
-  });
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  ScrollTrigger.clearScrollMemory();
+
+  gsap.set(experiencePanel, { yPercent: 100 });
   gsap.set(experienceContent, { opacity: 0.6 });
   gsap.set(homeInner, { filter: "blur(0px)", scale: 1 });
+  syncExperienceFromProgress({ progress: 0 });
+  experiencePanel.classList.remove("is-pre-init");
 
   experienceTimeline = gsap.timeline({
     scrollTrigger: {
@@ -157,26 +170,13 @@ function initExperiencePanel() {
       pin: true,
       scrub: true,
       anticipatePin: 1,
-      onUpdate: (self) => {
-        setExperienceOpenState(self.progress >= 0.98);
-      },
-      onLeave: () => setExperienceOpenState(true),
-      onEnterBack: () => setExperienceOpenState(false),
+      onUpdate: syncExperienceFromProgress,
+      onRefresh: syncExperienceFromProgress,
     },
   });
 
   experienceTimeline
-    .to(
-      experiencePanel,
-      {
-        yPercent: 0,
-        "--panel-opacity": 1,
-        backdropFilter: "blur(18px)",
-        webkitBackdropFilter: "blur(18px)",
-        ease: "none",
-      },
-      0
-    )
+    .to(experiencePanel, { yPercent: 0, ease: "none" }, 0)
     .to(experienceContent, { opacity: 1, ease: "none" }, 0)
     .to(
       homeInner,

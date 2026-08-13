@@ -89,6 +89,10 @@
     will-change: transform, background-color, backdrop-filter, opacity;
   }
 
+  .experience-panel.is-pre-init {
+    visibility: hidden;
+  }
+
   .experience-panel.is-open {
     pointer-events: auto;
   }

@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Alírio Guerra - Desenvolvedor front-end JavaScript</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    </script>
     <meta name="theme-color" content="#191919" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
     <link id="favicon" rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -141,7 +144,7 @@
 
     <div
       id="experience-panel"
-      class="experience-panel fixed inset-0 z-40 overflow-hidden"
+      class="experience-panel is-pre-init fixed inset-0 z-40 overflow-hidden"
       role="dialog"
       aria-modal="true"
       aria-labelledby="experience-title"
