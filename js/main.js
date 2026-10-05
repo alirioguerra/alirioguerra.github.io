@@ -204,21 +204,16 @@ function initExperiencePanel() {
   });
 
   experienceTimeline
-    .fromTo(
-      experiencePanel,
-      { yPercent: 100, "--panel-opacity": 0, "--panel-blur": 0 },
-      { yPercent: 0, "--panel-opacity": 1, "--panel-blur": 18, duration: 1 },
-      0
-    )
+    .fromTo(experiencePanel, { yPercent: 100 }, { yPercent: 0, duration: 1 }, 0)
+    .fromTo(homeInner, { opacity: 1 }, { opacity: 0, duration: 0.8, ease: "power1.out" }, 0)
     .fromTo(experienceOpen, { opacity: 1 }, { opacity: 0, duration: 0.3 }, 0);
 
   if (!prefersReducedMotion) {
     experienceTimeline
-      .fromTo(experiencePanel, { "--panel-radius": "28px" }, { "--panel-radius": "0px", duration: 1, ease: "power2.in" }, 0)
       .fromTo(
         homeInner,
-        { scale: 1, opacity: 1, filter: "blur(0px)" },
-        { scale: 0.94, opacity: 0.4, filter: "blur(10px)", duration: 1 },
+        { scale: 1, filter: "blur(0px)" },
+        { scale: 0.94, filter: "blur(14px)", duration: 0.8, ease: "power1.out" },
         0
       )
       .fromTo(

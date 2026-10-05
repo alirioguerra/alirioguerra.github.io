@@ -11,7 +11,6 @@
     --text-secondary: #d1d5db;
     --text-muted: #9ca3af;
     --accent: #22d3ee;
-    --panel-rgb: 25 25 25;
   }
 
   @media (prefers-color-scheme: light) {
@@ -23,7 +22,6 @@
       --text-secondary: #404040;
       --text-muted: #737373;
       --accent: #007c99;
-      --panel-rgb: 245 245 245;
     }
   }
 
@@ -131,17 +129,9 @@
   }
 
   .experience-panel {
-    --panel-opacity: 0;
-    --panel-blur: 0;
-    --panel-radius: 0px;
-    background-color: rgb(var(--panel-rgb) / var(--panel-opacity));
     color: var(--text-primary);
-    backdrop-filter: blur(calc(var(--panel-blur) * 1px));
-    -webkit-backdrop-filter: blur(calc(var(--panel-blur) * 1px));
-    border-top-left-radius: var(--panel-radius);
-    border-top-right-radius: var(--panel-radius);
     pointer-events: none;
-    will-change: transform, background-color, backdrop-filter;
+    will-change: transform;
   }
 
   .experience-panel.is-pre-init {
