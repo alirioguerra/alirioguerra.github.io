@@ -79,14 +79,69 @@
     display: none;
   }
 
+  .is-loading #home-inner,
+  .is-loading .site-chrome {
+    visibility: hidden;
+  }
+
+  .split-word {
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.12em 0;
+    margin: -0.12em 0;
+    vertical-align: top;
+  }
+
+  .split-char {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .social-link {
+    transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 300ms ease;
+  }
+
+  .social-link:hover,
+  .social-link:focus-visible {
+    transform: translateY(-3px) scale(1.08);
+  }
+
+  .link-underline {
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 450ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  button:hover > .link-underline::after,
+  button:focus-visible > .link-underline::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
   .experience-panel {
     --panel-opacity: 0;
+    --panel-blur: 0;
+    --panel-radius: 0px;
     background-color: rgb(var(--panel-rgb) / var(--panel-opacity));
     color: var(--text-primary);
-    backdrop-filter: blur(0);
-    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(calc(var(--panel-blur) * 1px));
+    -webkit-backdrop-filter: blur(calc(var(--panel-blur) * 1px));
+    border-top-left-radius: var(--panel-radius);
+    border-top-right-radius: var(--panel-radius);
     pointer-events: none;
-    will-change: transform, background-color, backdrop-filter, opacity;
+    will-change: transform, background-color, backdrop-filter;
   }
 
   .experience-panel.is-pre-init {
@@ -97,12 +152,17 @@
     pointer-events: auto;
   }
 
+  /* Fade the scrolling text out where the fixed close button and footer sit. */
   .experience-panel-content {
     overscroll-behavior: contain;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 3rem, #000 5.5rem, #000 calc(100% - 8rem), transparent calc(100% - 4rem));
+    mask-image: linear-gradient(to bottom, transparent 0, transparent 3rem, #000 5.5rem, #000 calc(100% - 8rem), transparent calc(100% - 4rem));
   }
 
-  .resume-experience {
-    opacity: 1;
-    transform: none;
+  @media (prefers-reduced-motion: reduce) {
+    .social-link,
+    .link-underline::after {
+      transition: none;
+    }
   }
 }

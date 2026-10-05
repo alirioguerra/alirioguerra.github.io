@@ -1,25 +1,18 @@
-const LANG_KEY = "preferred-lang";
-const I18N_STORAGE_KEY = `${window.location.host}-vanilla-i18n`;
-const languages = ["pt-br", "en"];
+const DEFAULT_LANG = "pt-br";
+const lang = document.documentElement.lang === "en" ? "en" : DEFAULT_LANG;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const savedLang = localStorage.getItem(LANG_KEY);
-const hasChosenLang = savedLang && languages.includes(savedLang);
-
-const toggler = document.getElementById("vanilla-i18n-toggler");
-const langButtons = document.querySelectorAll("[data-lang]");
-const modal = document.getElementById("lang-modal");
-const modalButtons = document.querySelectorAll("[data-lang-choice]");
 const favicon = document.getElementById("favicon");
 const inactiveFavicons = ["👀", "☕", "🚀"];
 const home = document.getElementById("home");
 const homeInner = document.getElementById("home-inner");
+const heroTitle = document.getElementById("hero-title");
+const heroDescription = document.getElementById("hero-description");
 const experiencePanel = document.getElementById("experience-panel");
 const experienceContent = experiencePanel?.querySelector(".experience-panel-content");
 const experienceOpen = document.getElementById("experience-open");
 const experienceClose = document.getElementById("experience-close");
-const dateEl = document.getElementById("date");
 
-let i18nInstance = null;
 let faviconInterval = null;
 let faviconIndex = 0;
 let experienceTimeline = null;
@@ -59,53 +52,89 @@ function syncFavicon() {
   showActiveFavicon();
 }
 
-function syncLangToggle(lang) {
-  langButtons.forEach((btn) => {
-    const active = btn.dataset.lang === lang;
-    btn.setAttribute("aria-pressed", active);
-    btn.classList.toggle("opacity-100", active);
-    btn.classList.toggle("opacity-40", !active);
-    btn.classList.toggle("hover:opacity-70", !active);
-  });
+function lookup(dict, key) {
+  return key.split(".").reduce((node, part) => node?.[part], dict);
 }
 
-function initI18n(lang) {
-  localStorage.setItem(I18N_STORAGE_KEY, lang);
-  toggler.value = lang;
-  i18nInstance = new vanilla_i18n(languages, {
-    path: "assets/vanilla-i18n",
-    debug: false,
-    i18n_attr_name: "vanilla-i18n",
-    toggler_id: "vanilla-i18n-toggler",
-    default_language: lang,
-  });
-  return i18nInstance.run();
-}
+async function applyTranslations(targetLang) {
+  if (targetLang === DEFAULT_LANG) return;
 
-function setLanguage(lang) {
-  if (!languages.includes(lang)) return;
-  localStorage.setItem(LANG_KEY, lang);
-  if (i18nInstance) {
-    toggler.value = lang;
-    toggler.dispatchEvent(new Event("change"));
-  } else {
-    initI18n(lang);
+  try {
+    const response = await fetch(`assets/i18n/${targetLang}.json`);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const dict = await response.json();
+
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const text = lookup(dict, el.dataset.i18n);
+      if (typeof text === "string") el.innerHTML = text;
+    });
+
+    if (dict.meta?.title) document.title = dict.meta.title;
+    if (dict.meta?.description) {
+      document
+        .querySelectorAll('meta[name="description"], meta[property="og:description"]')
+        .forEach((meta) => meta.setAttribute("content", dict.meta.description));
+    }
+  } catch {
+    document.documentElement.lang = DEFAULT_LANG;
   }
-  syncLangToggle(lang);
-  document.documentElement.lang = lang;
 }
 
-function closeLangModal() {
-  if (modal.classList.contains("opacity-0")) return;
-  modal.classList.add("opacity-0", "pointer-events-none");
-  modal.addEventListener(
-    "transitionend",
-    () => {
-      modal.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-    },
-    { once: true }
-  );
+function updateCurrentDate() {
+  const dateEl = document.getElementById("date");
+  if (!dateEl) return;
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  dateEl.textContent = `${month}/${now.getFullYear()}`;
+}
+
+function splitIntoChars(el) {
+  const text = el.textContent.trim();
+  el.setAttribute("aria-label", text);
+  el.textContent = "";
+
+  text.split(/\s+/).forEach((word, index) => {
+    if (index > 0) el.append(" ");
+    const wordEl = document.createElement("span");
+    wordEl.className = "split-word";
+    wordEl.setAttribute("aria-hidden", "true");
+    for (const char of word) {
+      const charEl = document.createElement("span");
+      charEl.className = "split-char";
+      charEl.textContent = char;
+      wordEl.append(charEl);
+    }
+    el.append(wordEl);
+  });
+
+  return el.querySelectorAll(".split-char");
+}
+
+function playIntro() {
+  const root = document.documentElement;
+  const alreadyVisible = !root.classList.contains("is-loading");
+  if (alreadyVisible || prefersReducedMotion || typeof gsap === "undefined" || !heroTitle) {
+    root.classList.remove("is-loading");
+    return;
+  }
+
+  const chars = splitIntoChars(heroTitle);
+  const chrome = [
+    ...document.querySelectorAll(".site-chrome li"),
+    experienceOpen?.querySelector(".link-underline"),
+  ].filter(Boolean);
+
+  gsap
+    .timeline({ defaults: { ease: "power4.out" } })
+    .from(chars, { yPercent: 115, rotate: 6, duration: 1.2, stagger: 0.04 })
+    .from(
+      heroDescription,
+      { y: 24, autoAlpha: 0, filter: "blur(8px)", duration: 1.1, ease: "power3.out", clearProps: "filter" },
+      "-=0.85"
+    )
+    .from(chrome, { y: 18, autoAlpha: 0, duration: 0.8, stagger: 0.07, ease: "power3.out" }, "-=0.75");
+
+  root.classList.remove("is-loading");
 }
 
 function setExperienceOpenState(open) {
@@ -113,38 +142,41 @@ function setExperienceOpenState(open) {
   experiencePanel?.classList.toggle("is-open", open);
   experiencePanel?.setAttribute("aria-hidden", String(!open));
   experienceOpen?.setAttribute("aria-expanded", String(open));
-  if (!open && experienceContent) {
-    experienceContent.scrollTop = 0;
-  }
 }
 
-function syncExperienceFromProgress(self) {
-  const progress = self.progress ?? 0;
-  if (experiencePanel) {
-    experiencePanel.style.setProperty("--panel-opacity", String(progress));
-    const blur = `blur(${progress * 18}px)`;
-    experiencePanel.style.backdropFilter = blur;
-    experiencePanel.style.webkitBackdropFilter = blur;
-  }
+function syncExperienceState(self) {
+  const progress = self?.progress ?? 0;
   setExperienceOpenState(progress >= 0.98);
+  if (experienceOpen) experienceOpen.style.visibility = progress > 0.5 ? "hidden" : "";
+  if (progress === 0 && experienceContent) experienceContent.scrollTop = 0;
 }
 
-function scrollToExperienceProgress(progress, smooth = true) {
+function scrollToExperienceProgress(progress) {
   const st = experienceTimeline?.scrollTrigger;
   if (!st) return;
   const target = st.start + (st.end - st.start) * progress;
-  window.scrollTo({ top: target, behavior: smooth ? "smooth" : "auto" });
+
+  if (typeof ScrollToPlugin !== "undefined" && !prefersReducedMotion) {
+    gsap.to(window, {
+      scrollTo: { y: target, autoKill: true },
+      duration: 1.1,
+      ease: "power3.inOut",
+      overwrite: true,
+    });
+    return;
+  }
+
+  window.scrollTo({ top: target, behavior: prefersReducedMotion ? "auto" : "smooth" });
 }
 
 function openExperience() {
-  scrollToExperienceProgress(1, true);
-  experienceClose?.focus();
+  scrollToExperienceProgress(1);
+  experienceClose?.focus({ preventScroll: true });
 }
 
 function closeExperience() {
-  if (experienceContent) experienceContent.scrollTop = 0;
-  scrollToExperienceProgress(0, true);
-  experienceOpen?.focus();
+  scrollToExperienceProgress(0);
+  experienceOpen?.focus({ preventScroll: true });
 }
 
 function initExperiencePanel() {
@@ -153,80 +185,53 @@ function initExperiencePanel() {
   window.scrollTo(0, 0);
 
   gsap.registerPlugin(ScrollTrigger);
+  if (typeof ScrollToPlugin !== "undefined") gsap.registerPlugin(ScrollToPlugin);
   ScrollTrigger.config({ ignoreMobileResize: true });
   ScrollTrigger.clearScrollMemory();
 
-  gsap.set(experiencePanel, { yPercent: 100 });
-  gsap.set(experienceContent, { opacity: 0.6 });
-  gsap.set(homeInner, { filter: "blur(0px)", scale: 1 });
-  syncExperienceFromProgress({ progress: 0 });
-  experiencePanel.classList.remove("is-pre-init");
-
   experienceTimeline = gsap.timeline({
+    defaults: { ease: "none" },
     scrollTrigger: {
       trigger: home,
       start: "top top",
       end: "+=100%",
       pin: true,
-      scrub: true,
+      scrub: prefersReducedMotion ? true : 0.6,
       anticipatePin: 1,
-      onUpdate: syncExperienceFromProgress,
-      onRefresh: syncExperienceFromProgress,
+      onUpdate: syncExperienceState,
+      onRefresh: syncExperienceState,
     },
   });
 
   experienceTimeline
-    .to(experiencePanel, { yPercent: 0, ease: "none" }, 0)
-    .to(experienceContent, { opacity: 1, ease: "none" }, 0)
-    .to(
-      homeInner,
-      {
-        filter: "blur(12px)",
-        scale: 1.04,
-        ease: "none",
-      },
+    .fromTo(
+      experiencePanel,
+      { yPercent: 100, "--panel-opacity": 0, "--panel-blur": 0 },
+      { yPercent: 0, "--panel-opacity": 1, "--panel-blur": 18, duration: 1 },
       0
-    );
+    )
+    .fromTo(experienceOpen, { opacity: 1 }, { opacity: 0, duration: 0.3 }, 0);
+
+  if (!prefersReducedMotion) {
+    experienceTimeline
+      .fromTo(experiencePanel, { "--panel-radius": "28px" }, { "--panel-radius": "0px", duration: 1, ease: "power2.in" }, 0)
+      .fromTo(
+        homeInner,
+        { scale: 1, opacity: 1, filter: "blur(0px)" },
+        { scale: 0.94, opacity: 0.4, filter: "blur(10px)", duration: 1 },
+        0
+      )
+      .fromTo(
+        experiencePanel.querySelectorAll("[data-reveal]"),
+        { y: (index) => 90 + index * 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.06, ease: "power2.out" },
+        0.3
+      );
+  }
+
+  syncExperienceState(experienceTimeline.scrollTrigger);
+  experiencePanel.classList.remove("is-pre-init");
 }
-
-if (dateEl) {
-  const now = new Date();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const year = now.getFullYear();
-  dateEl.textContent = `${month}/${year}`;
-}
-
-if (hasChosenLang) {
-  initI18n(savedLang);
-  syncLangToggle(savedLang);
-  document.documentElement.lang = savedLang;
-} else {
-  localStorage.removeItem(I18N_STORAGE_KEY);
-  langButtons.forEach((btn) => {
-    btn.setAttribute("aria-pressed", "false");
-    btn.classList.add("opacity-40", "hover:opacity-70");
-    btn.classList.remove("opacity-100");
-  });
-}
-
-toggler?.addEventListener("change", () => {
-  syncLangToggle(toggler.value);
-  document.documentElement.lang = toggler.value;
-});
-
-langButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    if (toggler.value === btn.dataset.lang && localStorage.getItem(LANG_KEY)) return;
-    setLanguage(btn.dataset.lang);
-  });
-});
-
-modalButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    setLanguage(btn.dataset.langChoice);
-    closeLangModal();
-  });
-});
 
 experienceOpen?.addEventListener("click", openExperience);
 experienceClose?.addEventListener("click", closeExperience);
@@ -254,4 +259,9 @@ window.addEventListener("blur", syncFavicon);
 document.addEventListener("visibilitychange", syncFavicon);
 
 syncFavicon();
+updateCurrentDate();
 initExperiencePanel();
+
+const contentReady = Promise.all([applyTranslations(lang), document.fonts?.ready]).then(updateCurrentDate);
+const loadTimeout = new Promise((resolve) => setTimeout(resolve, 1500));
+Promise.race([contentReady, loadTimeout]).then(playIntro);

@@ -7,6 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      (function () {
+        var root = document.documentElement;
+        var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+        var lang = "en";
+        for (var i = 0; i < prefs.length; i++) {
+          var code = String(prefs[i]).toLowerCase();
+          if (code.indexOf("pt") === 0) { lang = "pt-br"; break; }
+          if (code.indexOf("en") === 0) break;
+        }
+        root.lang = lang;
+        root.classList.add("is-loading");
+        setTimeout(function () { root.classList.remove("is-loading"); }, 3000);
+      })();
     </script>
     <meta name="theme-color" content="#191919" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)" />
@@ -34,66 +47,22 @@
     />
   </head>
   <body class="font-source-code-pro text-sm">
-    <div
-      id="lang-modal"
-      class="theme-surface fixed inset-0 z-[100] flex flex-col items-center justify-center font-source-code-pro px-6 transition-opacity duration-500 ease-out"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Idioma"
-    >
-      <div class="flex flex-col items-center gap-6">
-        <button
-          type="button"
-          data-lang-choice="pt-br"
-          class="text-4xl md:text-6xl tracking-wide hover:opacity-70 transition-opacity"
-        >
-          Português
-        </button>
-        <button
-          type="button"
-          data-lang-choice="en"
-          class="text-4xl md:text-6xl tracking-wide hover:opacity-70 transition-opacity"
-        >
-          English
-        </button>
-      </div>
-    </div>
-    <script>
-      if (localStorage.getItem("preferred-lang")) {
-        document.getElementById("lang-modal").classList.add("hidden");
-      } else {
-        document.body.classList.add("overflow-hidden");
-      }
-    </script>
-    <select id="vanilla-i18n-toggler" class="sr-only" tabindex="-1" aria-hidden="true">
-      <option value="pt-br">pt-br</option>
-      <option value="en">en</option>
-    </select>
-    <nav
-      class="fixed top-6 right-6 z-50 flex items-center gap-1 text-sm font-source-code-pro tracking-wide"
-      aria-label="Idioma"
-    >
-      <button type="button" data-lang="pt-br" aria-pressed="true" class="lang-btn opacity-100 transition-opacity">PT</button>
-      <span class="theme-muted select-none" aria-hidden="true">|</span>
-      <button type="button" data-lang="en" aria-pressed="false" class="lang-btn opacity-40 hover:opacity-70 transition-opacity">EN</button>
-    </nav>
-
     <section id="home" class="relative h-screen overflow-hidden">
       <div id="home-inner" class="h-full flex flex-col justify-center will-change-transform">
         <div class="container mx-auto px-4 max-w-6xl">
-          <h1 data-name="Alírio Guerra" class="font-bold text-6xl md:text-8xl font-source-code-pro mb-4">Alírio Guerra</h1>
-          <p class="theme-secondary text-base md:text-xl font-source-code-pro tracking-wide leading-relaxed max-w-3xl"><i18n vanilla-i18n="hero.description">Engenheiro Front-end especializado em aplicações web e mobile, com foco em arquitetura de software, performance, Design Systems e desenvolvimento de produtos utilizando React, Vue e React Native. Experiência na integração com APIs, serviços de terceiros e modernização de aplicações legadas.</i18n></p>
+          <h1 id="hero-title" class="font-bold text-6xl md:text-8xl font-source-code-pro mb-4">Alírio Guerra</h1>
+          <p id="hero-description" class="theme-secondary text-base md:text-xl font-source-code-pro tracking-wide leading-relaxed max-w-3xl"><i18n data-i18n="hero.description">Engenheiro Front-end especializado em aplicações web e mobile, com foco em arquitetura de software, performance, Design Systems e desenvolvimento de produtos utilizando React, Vue e React Native. Experiência na integração com APIs, serviços de terceiros e modernização de aplicações legadas.</i18n></p>
         </div>
       </div>
     </section>
 
-    <ul class="fixed bottom-6 left-6 z-50 flex items-center gap-5 text-2xl">
+    <ul class="site-chrome fixed bottom-6 left-6 z-50 flex items-center gap-5 text-2xl">
       <li>
         <a
           href="https://www.linkedin.com/in/alirioguerra/"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:scale-110 transition-transform duration-300"
+          class="social-link inline-block"
           aria-label="LinkedIn"
         >
           <i class="fab fa-linkedin"></i>
@@ -104,7 +73,7 @@
           href="https://github.com/alirioguerra"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:scale-110 transition-transform duration-300"
+          class="social-link inline-block"
           aria-label="GitHub"
         >
           <i class="fab fa-github"></i>
@@ -113,7 +82,7 @@
       <li>
         <a
           href="mailto:alirioguerra.92@gmail.com"
-          class="hover:scale-110 transition-transform duration-300"
+          class="social-link inline-block"
           aria-label="Email"
         >
           <i class="fas fa-envelope"></i>
@@ -124,7 +93,7 @@
           href="https://wa.me/5561994522467"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:scale-110 transition-transform duration-300"
+          class="social-link inline-block"
           aria-label="WhatsApp"
         >
           <i class="fab fa-whatsapp"></i>
@@ -135,11 +104,11 @@
     <button
       id="experience-open"
       type="button"
-      class="fixed bottom-6 right-6 z-50 text-sm font-source-code-pro tracking-wide hover:opacity-70 transition-opacity"
+      class="site-chrome fixed bottom-6 right-6 z-50 text-sm font-source-code-pro tracking-wide"
       aria-expanded="false"
       aria-controls="experience-panel"
     >
-      <i18n vanilla-i18n="experience.open">Experiência</i18n>
+      <span class="link-underline inline-block"><i18n data-i18n="experience.open">Experiência</i18n></span>
     </button>
 
     <div
@@ -153,42 +122,42 @@
       <button
         id="experience-close"
         type="button"
-        class="fixed top-16 right-6 z-50 text-sm font-source-code-pro tracking-wide hover:opacity-70 transition-opacity"
+        class="fixed top-6 right-6 z-50 text-sm font-source-code-pro tracking-wide"
       >
-        <i18n vanilla-i18n="experience.close">Fechar</i18n>
+        <span class="link-underline inline-block"><i18n data-i18n="experience.close">Fechar</i18n></span>
       </button>
 
-      <div class="experience-panel-content h-full overflow-y-auto py-24">
+      <div class="experience-panel-content h-full overflow-y-auto pt-20 pb-36 md:pt-24">
         <div class="container mx-auto px-4 max-w-6xl">
-          <h2 id="experience-title" class="text-4xl md:text-8xl font-source-code-pro font-bold mb-12"><i18n vanilla-i18n="experience.title">Experiência.</i18n></h2>
+          <h2 id="experience-title" data-reveal class="text-4xl md:text-8xl font-source-code-pro font-bold mb-12"><i18n data-i18n="experience.title">Experiência.</i18n></h2>
           <div class="space-y-12">
-            <div class="resume-experience">
+            <div class="resume-experience" data-reveal>
               <h3 class="text-3xl font-source-code-pro font-bold mb-2">Follow55</h3>
-              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n vanilla-i18n="experience.follow55.role">Dev Front-End Pleno (vuejs / react native)</i18n></h4>
-              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n vanilla-i18n="experience.follow55.period">set/2020 até <span id="date">--/--</span></i18n></p>
+              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n data-i18n="experience.follow55.role">Dev Front-End Pleno (vuejs / react native)</i18n></h4>
+              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n data-i18n="experience.follow55.period">set/2020 até <span id="date">--/--</span></i18n></p>
               <span class="theme-accent inline-block text-base font-source-code-pro tracking-wide mb-4">VUEJS & REACT NATIVE</span>
-              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n vanilla-i18n="experience.follow55.description">Atuação em projetos para grandes marcas como Natura, iFood, Banco BV e Electrolux, desenvolvendo interfaces modernas com Vue.js e React Native. Participação ativa em squads ágeis, colaborando com times multidisciplinares e realizando reuniões com clientes para alinhamento técnico e estratégico.</i18n></p>
+              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n data-i18n="experience.follow55.description">Atuação em projetos para grandes marcas como Natura, iFood, Banco BV e Electrolux, desenvolvendo interfaces modernas com Vue.js e React Native. Participação ativa em squads ágeis, colaborando com times multidisciplinares e realizando reuniões com clientes para alinhamento técnico e estratégico.</i18n></p>
             </div>
-            <div class="resume-experience">
-              <h3 class="text-3xl font-source-code-pro font-bold mb-2"><i18n vanilla-i18n="experience.freelancer.title">Dev Front-End Freelancer</i18n></h3>
-              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n vanilla-i18n="experience.freelancer.role">Desenvolvedor Web (vuejs / react native)</i18n></h4>
-              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n vanilla-i18n="experience.freelancer.period">dez/2017 até ago/2020</i18n></p>
+            <div class="resume-experience" data-reveal>
+              <h3 class="text-3xl font-source-code-pro font-bold mb-2"><i18n data-i18n="experience.freelancer.title">Dev Front-End Freelancer</i18n></h3>
+              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n data-i18n="experience.freelancer.role">Desenvolvedor Web (vuejs / react native)</i18n></h4>
+              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n data-i18n="experience.freelancer.period">dez/2017 até ago/2020</i18n></p>
               <span class="theme-accent inline-block text-base font-source-code-pro tracking-wide mb-4">HTML, CSS, JAVASCRIPT & VUE</span>
-              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n vanilla-i18n="experience.freelancer.description">Criação de e-commerces, landing pages e sistemas web personalizados para clientes como ADASA, COFEN e Lunera Produções. Atuação com tecnologias modernas, foco em performance, usabilidade e entrega de soluções sob medida.</i18n></p>
+              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n data-i18n="experience.freelancer.description">Criação de e-commerces, landing pages e sistemas web personalizados para clientes como ADASA, COFEN e Lunera Produções. Atuação com tecnologias modernas, foco em performance, usabilidade e entrega de soluções sob medida.</i18n></p>
             </div>
-            <div class="resume-experience">
+            <div class="resume-experience" data-reveal>
               <h3 class="text-3xl font-source-code-pro font-bold mb-2">Instituto Hélio</h3>
-              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n vanilla-i18n="experience.helio.role">Desenvolvedor Web (react / native)</i18n></h4>
-              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n vanilla-i18n="experience.helio.period">dez/2017 até jun/2018</i18n></p>
+              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n data-i18n="experience.helio.role">Desenvolvedor Web (react / native)</i18n></h4>
+              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n data-i18n="experience.helio.period">dez/2017 até jun/2018</i18n></p>
               <span class="theme-accent inline-block text-base font-source-code-pro tracking-wide mb-4">REACTJS & REACT NATIVE</span>
-              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n vanilla-i18n="experience.helio.description">Desenvolvimento de sistema interno com Laravel e React.js, e criação de loja virtual com WordPress e WooCommerce. Participação em todas as etapas, da concepção à entrega.</i18n></p>
+              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n data-i18n="experience.helio.description">Desenvolvimento de sistema interno com Laravel e React.js, e criação de loja virtual com WordPress e WooCommerce. Participação em todas as etapas, da concepção à entrega.</i18n></p>
             </div>
-            <div class="resume-experience">
+            <div class="resume-experience" data-reveal>
               <h3 class="text-3xl font-source-code-pro font-bold mb-2">Iglu comunicação</h3>
-              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n vanilla-i18n="experience.iglu.role">Desenvolvedor Front-end & web designer</i18n></h4>
-              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n vanilla-i18n="experience.iglu.period">jan/2016 até fev/2018</i18n></p>
+              <h4 class="theme-secondary text-xl font-source-code-pro tracking-wide mb-2"><i18n data-i18n="experience.iglu.role">Desenvolvedor Front-end & web designer</i18n></h4>
+              <p class="theme-muted text-lg font-source-code-pro tracking-wide mb-3"><i18n data-i18n="experience.iglu.period">jan/2016 até fev/2018</i18n></p>
               <span class="theme-accent inline-block text-base font-source-code-pro tracking-wide mb-4">HTML, CSS & JAVASCRIPT</span>
-              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n vanilla-i18n="experience.iglu.description">Criação de landing pages responsivas com HTML, CSS e JavaScript, com foco em performance, compatibilidade entre navegadores e fidelidade ao design.</i18n></p>
+              <p class="text-lg font-source-code-pro tracking-wide leading-relaxed"><i18n data-i18n="experience.iglu.description">Criação de landing pages responsivas com HTML, CSS e JavaScript, com foco em performance, compatibilidade entre navegadores e fidelidade ao design.</i18n></p>
             </div>
           </div>
         </div>
@@ -197,8 +166,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/thealphadollar/vanilla-i18n/src/vanilla-i18n.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="index.min.js"></script>
   </body>
 </html>
