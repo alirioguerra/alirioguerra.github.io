@@ -9,12 +9,12 @@
       if ("scrollRestoration" in history) history.scrollRestoration = "manual";
       (function () {
         var root = document.documentElement;
-        var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+        // Portuguese wins if it shows up anywhere: in the site-language list or the browser UI locale.
+        var prefs = [].concat(navigator.languages || [], navigator.language || []);
+        try { prefs.push(Intl.DateTimeFormat().resolvedOptions().locale); } catch (e) {}
         var lang = "en";
         for (var i = 0; i < prefs.length; i++) {
-          var code = String(prefs[i]).toLowerCase();
-          if (code.indexOf("pt") === 0) { lang = "pt-br"; break; }
-          if (code.indexOf("en") === 0) break;
+          if (String(prefs[i]).toLowerCase().indexOf("pt") === 0) { lang = "pt-br"; break; }
         }
         root.lang = lang;
         root.classList.add("is-loading");
