@@ -8,6 +8,8 @@ const home = document.getElementById("home");
 const homeInner = document.getElementById("home-inner");
 const heroTitle = document.getElementById("hero-title");
 const heroDescription = document.getElementById("hero-description");
+const inkCanvas = document.getElementById("ink-canvas");
+const ink = !prefersReducedMotion && inkCanvas && window.createInk ? window.createInk(inkCanvas) : null;
 const experiencePanel = document.getElementById("experience-panel");
 const experienceContent = experiencePanel?.querySelector(".experience-panel-content");
 const experienceOpen = document.getElementById("experience-open");
@@ -113,6 +115,7 @@ function splitIntoChars(el) {
 function playIntro() {
   const root = document.documentElement;
   const alreadyVisible = !root.classList.contains("is-loading");
+  ink?.start();
   if (alreadyVisible || prefersReducedMotion || typeof gsap === "undefined" || !heroTitle) {
     root.classList.remove("is-loading");
     return;
@@ -147,6 +150,7 @@ function setExperienceOpenState(open) {
 function syncExperienceState(self) {
   const progress = self?.progress ?? 0;
   setExperienceOpenState(progress >= 0.98);
+  ink?.setActive(progress < 0.98);
   if (experienceOpen) experienceOpen.style.visibility = progress > 0.5 ? "hidden" : "";
   if (progress === 0 && experienceContent) experienceContent.scrollTop = 0;
 }
@@ -206,6 +210,7 @@ function initExperiencePanel() {
   experienceTimeline
     .fromTo(experiencePanel, { yPercent: 100 }, { yPercent: 0, duration: 1 }, 0)
     .fromTo(homeInner, { opacity: 1 }, { opacity: 0, duration: 0.8, ease: "power1.out" }, 0)
+    .fromTo(inkCanvas, { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power1.out" }, 0)
     .fromTo(experienceOpen, { opacity: 1 }, { opacity: 0, duration: 0.3 }, 0);
 
   if (!prefersReducedMotion) {

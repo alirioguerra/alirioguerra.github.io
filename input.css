@@ -82,6 +82,27 @@
     visibility: hidden;
   }
 
+  /* #home becomes an isolated group when pinned, so it needs its own backdrop
+     for the ink canvas to blend against. */
+  #home {
+    background-color: var(--page-bg);
+  }
+
+  .ink-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+
+  /* White + difference reads as the theme's text color on the page and inverts over the ink. */
+  .blend-invert {
+    color: #fff;
+    mix-blend-mode: difference;
+  }
+
   .split-word {
     display: inline-block;
     overflow: hidden;

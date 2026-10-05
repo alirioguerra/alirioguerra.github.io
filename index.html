@@ -54,9 +54,10 @@
           <p id="hero-description" class="theme-secondary text-base md:text-xl font-source-code-pro tracking-wide leading-relaxed max-w-3xl"><i18n data-i18n="hero.description">Engenheiro Front-end especializado em aplicações web e mobile, com foco em arquitetura de software, performance, Design Systems e desenvolvimento de produtos utilizando React, Vue e React Native. Experiência na integração com APIs, serviços de terceiros e modernização de aplicações legadas.</i18n></p>
         </div>
       </div>
+      <canvas id="ink-canvas" class="ink-canvas" aria-hidden="true"></canvas>
     </section>
 
-    <ul class="site-chrome fixed bottom-6 left-6 z-50 flex items-center gap-5 text-2xl">
+    <ul class="site-chrome blend-invert fixed bottom-6 left-6 z-50 flex items-center gap-5 text-2xl">
       <li>
         <a
           href="https://www.linkedin.com/in/alirioguerra/"
@@ -104,7 +105,7 @@
     <button
       id="experience-open"
       type="button"
-      class="site-chrome fixed bottom-6 right-6 z-50 text-sm font-source-code-pro tracking-wide"
+      class="site-chrome blend-invert fixed bottom-6 right-6 z-50 text-sm font-source-code-pro tracking-wide"
       aria-expanded="false"
       aria-controls="experience-panel"
     >
@@ -167,6 +168,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+    <script src="js/ink.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
