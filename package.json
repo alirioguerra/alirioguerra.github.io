@@ -9,7 +9,7 @@
     "build": "postcss input.css -o style.css --watch",
     "build:prod": "postcss input.css -o style.css --env production",
     "dev": "postcss input.css -o style.css --watch",
-    "preview": "live-server --port=3000 --open=/index.html",
+    "preview": "browser-sync start --server --files \"index.html,style.css,js/**/*.js,assets/**/*\" --port 3000 --no-notify",
     "start": "concurrently \"npm run dev\" \"npm run preview\"",
     "build:js": "vite build",
     "build:js:watch": "vite build --watch"
@@ -17,8 +17,8 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
     "autoprefixer": "^10.4.21",
+    "browser-sync": "^3.0.4",
     "gh-pages": "^5.0.0",
-    "live-server": "^1.2.2",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "tailwindcss": "^3.4.0",
