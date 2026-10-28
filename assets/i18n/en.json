@@ -31,5 +31,10 @@
       "period": "Jan/2016 to Feb/2018",
       "description": "Created responsive landing pages with HTML, CSS, and JavaScript, focusing on performance, cross-browser compatibility, and design fidelity."
     }
+  },
+  "projects": {
+    "open": "Projects",
+    "title": "Projects.",
+    "intro": "Apps, tools and sites I've built — from desktop to mobile."
   }
 }

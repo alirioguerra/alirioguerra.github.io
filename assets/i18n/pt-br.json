@@ -31,5 +31,10 @@
       "period": "jan/2016 até fev/2018",
       "description": "Criação de landing pages responsivas com HTML, CSS e JavaScript, com foco em performance, compatibilidade entre navegadores e fidelidade ao design."
     }
+  },
+  "projects": {
+    "open": "Projetos",
+    "title": "Projetos.",
+    "intro": "Apps, ferramentas e sites que construí — do desktop ao mobile."
   }
 }

@@ -56,7 +56,7 @@
       </div>
     </section>
 
-    <ul class="site-chrome fixed bottom-6 left-6 z-50 flex items-center gap-5 text-2xl">
+    <ul class="site-chrome fixed bottom-6 left-4 md:left-6 z-50 flex items-center gap-4 md:gap-5 text-2xl">
       <li>
         <a
           href="https://www.linkedin.com/in/alirioguerra/"
@@ -101,15 +101,24 @@
       </li>
     </ul>
 
-    <button
-      id="experience-open"
-      type="button"
-      class="site-chrome fixed bottom-6 right-6 z-50 text-sm font-source-code-pro tracking-wide"
-      aria-expanded="false"
-      aria-controls="experience-panel"
-    >
-      <span class="link-underline inline-block"><i18n data-i18n="experience.open">Experiência</i18n></span>
-    </button>
+    <nav class="site-chrome section-nav fixed bottom-6 right-4 md:right-6 z-50 flex items-center gap-4 md:gap-6 text-sm font-source-code-pro tracking-wide">
+      <button
+        id="experience-open"
+        type="button"
+        aria-expanded="false"
+        aria-controls="experience-panel"
+      >
+        <span class="link-underline inline-block"><i18n data-i18n="experience.open">Experiência</i18n></span>
+      </button>
+      <button
+        id="projects-open"
+        type="button"
+        aria-expanded="false"
+        aria-controls="projects-panel"
+      >
+        <span class="link-underline inline-block"><i18n data-i18n="projects.open">Projetos</i18n></span>
+      </button>
+    </nav>
 
     <div
       id="experience-panel"
@@ -164,9 +173,36 @@
       </div>
     </div>
 
+    <div
+      id="projects-panel"
+      class="experience-panel projects-panel is-pre-init fixed inset-0 z-40"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="projects-title"
+      aria-hidden="true"
+    >
+      <button
+        id="projects-close"
+        type="button"
+        class="fixed top-6 right-6 z-50 text-sm font-source-code-pro tracking-wide"
+      >
+        <span class="link-underline inline-block"><i18n data-i18n="experience.close">Fechar</i18n></span>
+      </button>
+
+      <div class="experience-panel-content projects-panel-content h-full overflow-y-auto pt-20 pb-36 md:pt-24">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <h2 id="projects-title" data-reveal class="text-4xl md:text-8xl font-source-code-pro font-bold mb-4"><i18n data-i18n="projects.title">Projetos.</i18n></h2>
+          <p data-reveal class="theme-secondary text-lg font-source-code-pro tracking-wide leading-relaxed max-w-2xl mb-16 md:mb-24"><i18n data-i18n="projects.intro">Apps, ferramentas e sites que construí — do desktop ao mobile.</i18n></p>
+
+          <div id="projects-list" class="space-y-20 md:space-y-32"></div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
+    <script src="js/projects.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
